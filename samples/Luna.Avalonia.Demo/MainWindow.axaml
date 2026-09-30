@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Luna.Avalonia.Demo.MainWindow"
+        Title="Luna.Avalonia Demo"
+        Icon="/Assets/Icon.ico"
+        Width="900" Height="650">
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_Arquivo">
+        <MenuItem Header="_Novo" InputGesture="Ctrl+N" />
+        <MenuItem Header="_Abrir..." InputGesture="Ctrl+O" />
+        <Separator />
+        <MenuItem Header="Sai_r" />
+      </MenuItem>
+      <MenuItem Header="_Editar">
+        <MenuItem Header="_Desfazer" InputGesture="Ctrl+Z" />
+        <MenuItem Header="_Refazer" />
+        <Separator />
+        <MenuItem Header="_Recortar" />
+        <MenuItem Header="_Copiar" />
+        <MenuItem Header="C_olar" />
+      </MenuItem>
+      <MenuItem Header="_Exibir">
+        <MenuItem Header="Opção marcável" ToggleType="CheckBox" IsChecked="True" />
+        <MenuItem Header="Opção A" ToggleType="Radio" IsChecked="True" />
+        <MenuItem Header="Opção B" ToggleType="Radio" />
+      </MenuItem>
+      <MenuItem Header="Aj_uda">
+        <MenuItem Header="_Sobre..." />
+      </MenuItem>
+    </Menu>
+
+    <StatusBar DockPanel.Dock="Bottom">
+      <StatusBarItem Content="Pronto" />
+      <StatusBarItem Content="Luna.Avalonia" />
+    </StatusBar>
+
+    <TabControl Margin="8">
+      <TabItem Header="Botões">
+        <StackPanel Margin="16" Spacing="12" HorizontalAlignment="Left">
+          <StackPanel Orientation="Horizontal" Spacing="12">
+            <Button Content="Normal" />
+            <Button Content="Focado (.focused)" Classes="focused" />
+            <Button Content="Desabilitado" IsEnabled="False" />
+          </StackPanel>
+          <TextBlock Text="Passe o mouse sobre os botões para ver o glow âmbar (:pointerover) e clique para ver o gradiente pressed (:pressed)." TextWrapping="Wrap" MaxWidth="500" />
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Entradas">
+        <StackPanel Margin="16" Spacing="16" HorizontalAlignment="Left">
+          <StackPanel Orientation="Horizontal" Spacing="24">
+            <StackPanel Spacing="8">
+              <CheckBox Content="Não marcado" />
+              <CheckBox Content="Marcado" IsChecked="True" />
+              <CheckBox Content="Indeterminado" IsChecked="{x:Null}" />
+              <CheckBox Content="Desabilitado" IsEnabled="False" />
+              <CheckBox Content="Desabilitado marcado" IsEnabled="False" IsChecked="True" />
+            </StackPanel>
+            <StackPanel Spacing="8">
+              <RadioButton Content="Opção 1" GroupName="demo" IsChecked="True" />
+              <RadioButton Content="Opção 2" GroupName="demo" />
+              <RadioButton Content="Desabilitado" IsEnabled="False" />
+            </StackPanel>
+          </StackPanel>
+          <StackPanel Spacing="8" Width="220">
+            <TextBox Watermark="Watermark..." />
+            <TextBox Text="Texto de exemplo" />
+            <TextBox Text="Desabilitado" IsEnabled="False" />
+            <ComboBox PlaceholderText="Escolha um item..." HorizontalAlignment="Stretch">
+              <ComboBoxItem Content="Item 1" />
+              <ComboBoxItem Content="Item 2" />
+              <ComboBoxItem Content="Item 3" />
+            </ComboBox>
+            <Slider Value="40" Minimum="0" Maximum="100" />
+          </StackPanel>
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Listas">
+        <StackPanel Margin="16" Spacing="8" Orientation="Horizontal">
+          <ListBox Width="180" Height="150">
+            <ListBoxItem Content="Item A" />
+            <ListBoxItem Content="Item B" IsSelected="True" />
+            <ListBoxItem Content="Item C" />
+            <ListBoxItem Content="Item D" />
+          </ListBox>
+          <TreeView Width="220" Height="150">
+            <TreeViewItem Header="Pasta 1" IsExpanded="True">
+              <TreeViewItem Header="Arquivo 1.1" />
+              <TreeViewItem Header="Arquivo 1.2" />
+            </TreeViewItem>
+            <TreeViewItem Header="Pasta 2">
+              <TreeViewItem Header="Arquivo 2.1" />
+            </TreeViewItem>
+          </TreeView>
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Layout">
+        <StackPanel Margin="16" Spacing="16">
+          <GroupBox Header="Opções" Width="280" HorizontalAlignment="Left">
+            <StackPanel Spacing="8">
+              <CheckBox Content="Ativar recurso" IsChecked="True" />
+              <CheckBox Content="Outro recurso" />
+              <Button Content="Aplicar" HorizontalAlignment="Left" />
+            </StackPanel>
+          </GroupBox>
+          <Button Content="Abrir segunda janela" HorizontalAlignment="Left" Click="OnOpenSecondWindowClick" />
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Progresso">
+        <StackPanel Margin="16" Spacing="16" Width="300">
+          <ProgressBar Value="30" />
+          <ProgressBar Value="60" />
+          <ProgressBar Value="90" />
+          <ProgressBar IsIndeterminate="True" />
+        </StackPanel>
+      </TabItem>
+    </TabControl>
+  </DockPanel>
+</Window>

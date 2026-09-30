@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- Ported from XP.css themes/XP/_treeview.scss (ul.tree-view border/padding); structure
+       adapted from Avalonia's own Simple theme. -->
+  <ControlTheme x:Key="{x:Type TreeView}" TargetType="TreeView">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="5,2" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+          </ScrollViewer>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

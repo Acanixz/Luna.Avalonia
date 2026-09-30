@@ -1,0 +1,72 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}">
+      <StackPanel Spacing="12">
+        <Button Content="Normal" />
+        <Button Content="Focused" Classes="focused" />
+        <Button Content="Disabled" IsEnabled="False" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_buttons.scss (colors/gradients) + gui/_buttons.scss (sizing). -->
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource LunaButtonFaceGradientBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaButtonBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource LunaButtonCornerRadius}" />
+    <Setter Property="Padding" Value="12,0" />
+    <Setter Property="MinWidth" Value="75" />
+    <Setter Property="MinHeight" Value="23" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Cursor" Value="Arrow" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+          <ContentPresenter Name="PART_ContentPresenter"
+                             Padding="{TemplateBinding Padding}"
+                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                             Content="{TemplateBinding Content}"
+                             ContentTemplate="{TemplateBinding ContentTemplate}"
+                             RecognizesAccessKey="True" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <!-- background: linear-gradient(180deg, #cdcac3 0%, #e3e3db 8%, #e5e5de 94%, #f2f2f1 100%) -->
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource LunaButtonPressedGradientBrush}" />
+    </Style>
+
+    <!-- box-shadow: inset -1px 1px #cee7ff, inset 1px 2px #98b8ea, inset -2px 2px #bcd4f6, inset 1px -1px #89ade4, inset 2px -2px #89ade4 -->
+    <Style Selector="^:focus /template/ Border#PART_Border, ^.focused /template/ Border#PART_Border">
+      <Setter Property="BoxShadow" Value="{DynamicResource LunaGlowFocusBoxShadow}" />
+    </Style>
+
+    <!-- box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a
+         Declared after :focus so hover wins when a button is both focused and hovered - matches
+         the source CSS, where &:not(:disabled):hover has higher specificity than plain &:focus. -->
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="BoxShadow" Value="{DynamicResource LunaGlowAmberBoxShadow}" />
+    </Style>
+
+    <!-- gui/_forms.scss disabled rule: color set to the button-shadow gray (#808080) -->
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource LunaDisabledTextBrush}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

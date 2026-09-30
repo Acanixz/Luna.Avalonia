@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="using:Luna.Avalonia.Converters"
+                    x:ClassModifier="internal">
+
+  <!-- Overrides Avalonia's built-in managed-chrome TitleBar (shown whenever native decorations
+       can't be drawn on top of user content, which is always true on Windows once a Window
+       extends into its own decorations - see Styles/Window.axaml). Structure mirrors Avalonia's
+       own Simple theme template (PART_MouseTracker / PART_Container / PART_Background /
+       PART_CaptionButtons with the same Win32Properties hookup) so native drag/resize/hit-testing
+       keeps working; only the visuals (gradient, title text, caption button skin) are Luna's. -->
+  <ControlTheme x:Key="{x:Type TitleBar}" TargetType="TitleBar">
+    <Setter Property="Foreground" Value="{DynamicResource LunaTitleBarTextBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaTitleBarFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeCaption}" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="Stretch">
+          <Panel Name="PART_MouseTracker" Height="1" VerticalAlignment="Top" />
+          <Panel Name="PART_Container">
+            <!-- box-shadow: inset -1px -1px #00138c, ... (see Colors/Blue.axaml LunaWindowFrameBoxShadow) -->
+            <Border Name="PART_ActiveBackground"
+                    Background="{DynamicResource LunaTitleBarActiveGradientBrush}"
+                    CornerRadius="{DynamicResource LunaTitleBarCornerRadius}"
+                    IsVisible="{Binding $parent[Window].IsActive}"
+                    IsHitTestVisible="False"
+                    Win32Properties.NonClientHitTestResult="Caption" />
+            <!-- Not defined by XP.css - approximated inactive-window gradient (see Colors/Blue.axaml). -->
+            <Border Name="PART_InactiveBackground"
+                    Background="{DynamicResource LunaTitleBarInactiveGradientBrush}"
+                    CornerRadius="{DynamicResource LunaTitleBarCornerRadius}"
+                    IsVisible="{Binding !$parent[Window].IsActive}"
+                    IsHitTestVisible="False"
+                    Win32Properties.NonClientHitTestResult="Caption" />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="6,0,0,0"
+                        Spacing="4"
+                        IsHitTestVisible="False">
+              <Image Source="{Binding $parent[Window].Icon, Converter={x:Static converters:WindowIconToBitmapConverter.Instance}}"
+                     Width="16" Height="16"
+                     VerticalAlignment="Center"
+                     RenderOptions.BitmapInterpolationMode="None"
+                     IsVisible="{Binding $parent[Window].Icon, Converter={x:Static ObjectConverters.IsNotNull}}" />
+              <TextBlock Text="{Binding $parent[Window].Title}"
+                         Foreground="{TemplateBinding Foreground}"
+                         FontFamily="{TemplateBinding FontFamily}"
+                         FontSize="{TemplateBinding FontSize}"
+                         FontWeight="Bold"
+                         VerticalAlignment="Bottom" />
+            </StackPanel>
+            <CaptionButtons Name="PART_CaptionButtons"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Foreground="{TemplateBinding Foreground}"
+                            Win32Properties.NonClientHitTestResult="Client" />
+          </Panel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:fullscreen">
+      <Style Selector="^ /template/ Panel#PART_Container">
+        <Setter Property="RenderTransform" Value="translateY(-30px)" />
+        <Setter Property="Transitions">
+          <Transitions>
+            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.25" />
+          </Transitions>
+        </Setter>
+      </Style>
+      <Style Selector="^:pointerover /template/ Panel#PART_Container">
+        <Setter Property="RenderTransform" Value="none" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

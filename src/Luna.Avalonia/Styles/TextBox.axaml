@@ -1,0 +1,84 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}">
+      <StackPanel Spacing="12" Width="200">
+        <TextBox Watermark="Watermark" />
+        <TextBox Text="Some text" />
+        <TextBox Text="Disabled" IsEnabled="False" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_forms.scss (height/selection) + gui/_forms.scss (border/padding). -->
+  <ControlTheme x:Key="{x:Type TextBox}" TargetType="TextBox">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="4,3" />
+    <Setter Property="MinHeight" Value="23" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="CaretBrush" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="SelectionBrush" Value="{DynamicResource LunaSelectionBrush}" />
+    <Setter Property="SelectionForegroundBrush" Value="White" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <Grid ColumnDefinitions="Auto,*,Auto">
+            <ContentPresenter Name="PART_InnerLeftContent"
+                               Grid.Column="0"
+                               Content="{TemplateBinding InnerLeftContent}" />
+            <ScrollViewer Name="PART_ScrollViewer"
+                          Grid.Column="1"
+                          Padding="{TemplateBinding Padding}"
+                          HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                          VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+              <Panel>
+                <TextBlock Name="PART_Watermark"
+                           Text="{TemplateBinding Watermark}"
+                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                           Foreground="{DynamicResource LunaDisabledTextBrush}"
+                           IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}" />
+                <TextPresenter Name="PART_TextPresenter"
+                               Text="{TemplateBinding Text, Mode=TwoWay}"
+                               CaretIndex="{TemplateBinding CaretIndex}"
+                               SelectionStart="{TemplateBinding SelectionStart}"
+                               SelectionEnd="{TemplateBinding SelectionEnd}"
+                               TextAlignment="{TemplateBinding TextAlignment}"
+                               TextWrapping="{TemplateBinding TextWrapping}"
+                               PasswordChar="{TemplateBinding PasswordChar}"
+                               RevealPassword="{TemplateBinding RevealPassword}"
+                               SelectionBrush="{TemplateBinding SelectionBrush}"
+                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                               CaretBrush="{TemplateBinding CaretBrush}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+              </Panel>
+            </ScrollViewer>
+            <ContentPresenter Name="PART_InnerRightContent"
+                               Grid.Column="2"
+                               Content="{TemplateBinding InnerRightContent}" />
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource LunaDisabledTextBrush}" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="Background" Value="{DynamicResource LunaSurfaceBrush}" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

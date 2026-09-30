@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- No source in XP.css - uses the classic Windows tooltip look (pale yellow, thin black
+       border) rather than inventing a new Luna-specific style. -->
+  <ControlTheme x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+    <Setter Property="Background" Value="#FFFFE1" />
+    <Setter Property="BorderBrush" Value="Black" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="4,2" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="Black" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Padding="{TemplateBinding Padding}"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

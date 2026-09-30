@@ -1,0 +1,81 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}">
+      <StackPanel Spacing="12">
+        <RadioButton Content="Unselected" GroupName="preview" />
+        <RadioButton Content="Selected" GroupName="preview" IsChecked="True" />
+        <RadioButton Content="Disabled" IsEnabled="False" />
+        <RadioButton Content="Disabled selected" IsEnabled="False" IsChecked="True" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_forms.scss (radio rules) + gui/_forms.scss (structure).
+       Same face/border/hover-glow as CheckBox, but circular with a round dot instead of a tick. -->
+  <ControlTheme x:Key="{x:Type RadioButton}" TargetType="RadioButton">
+    <Setter Property="Background" Value="{DynamicResource LunaCheckRadioFaceGradientBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaCheckRadioBorderBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Cursor" Value="Arrow" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="Auto,*">
+          <Border Name="PART_Border"
+                  Grid.Column="0"
+                  Width="{DynamicResource LunaCheckRadioBoxSize}"
+                  Height="{DynamicResource LunaCheckRadioBoxSize}"
+                  CornerRadius="{DynamicResource LunaRadioCornerRadius}"
+                  VerticalAlignment="Center"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="1">
+            <Ellipse Name="RadioDot"
+                     Width="5" Height="5"
+                     Fill="{DynamicResource LunaAccentGreenBrush}"
+                     IsVisible="False" />
+          </Border>
+          <ContentPresenter Name="PART_ContentPresenter"
+                             Grid.Column="1"
+                             Margin="6,0,0,0"
+                             VerticalAlignment="Center"
+                             Content="{TemplateBinding Content}"
+                             ContentTemplate="{TemplateBinding ContentTemplate}"
+                             RecognizesAccessKey="True" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:checked /template/ Ellipse#RadioDot">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <!-- box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c (only while not pressed/disabled) -->
+    <Style Selector="^:pointerover:not(:pressed):not(:disabled) /template/ Border#PART_Border">
+      <Setter Property="BoxShadow" Value="{DynamicResource LunaCheckRadioHoverGlow}" />
+    </Style>
+
+    <!-- background: linear-gradient(135deg, #b0b0a7 0%, #e3e1d2 100%) -->
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource LunaCheckRadioPressedGradientBrush}" />
+    </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource LunaDisabledTextBrush}" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LunaCheckRadioBorderDisabledBrush}" />
+      </Style>
+      <Style Selector="^ /template/ Ellipse#RadioDot">
+        <Setter Property="Fill" Value="{DynamicResource LunaCheckRadioDisabledGlyphBrush}" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

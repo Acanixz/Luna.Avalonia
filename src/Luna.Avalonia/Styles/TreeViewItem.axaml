@@ -1,0 +1,77 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="using:Avalonia.Controls.Converters"
+                    x:ClassModifier="internal">
+
+  <converters:MarginMultiplierConverter x:Key="LunaTreeViewLeftMarginConverter" Indent="16" Left="True" />
+
+  <!-- Ported from XP.css gui/_treeview.scss details>summary::before: an 8x9 box with a "+"/"-"
+       drawn as two crossed bars (dotted connector lines between siblings are not reproduced -
+       see icon-porting decision). -->
+  <ControlTheme x:Key="LunaTreeViewItemToggleButtonTheme" TargetType="ToggleButton">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Width="9" Height="9"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Background="White"
+                BorderBrush="#808080"
+                BorderThickness="1">
+          <Grid>
+            <Rectangle Width="5" Height="1" Fill="#808080" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Name="VerticalBar" Width="1" Height="5" Fill="#808080" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:checked /template/ Rectangle#VerticalBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type TreeViewItem}" TargetType="TreeViewItem">
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel>
+          <Border Name="SelectionBorder" Background="{TemplateBinding Background}">
+            <Grid Name="PART_Header"
+                  Margin="{TemplateBinding Level, Mode=OneWay, Converter={StaticResource LunaTreeViewLeftMarginConverter}}"
+                  ColumnDefinitions="16,*">
+              <ToggleButton Name="PART_ExpandCollapseChevron"
+                            Focusable="False"
+                            Background="Transparent"
+                            IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
+                            Theme="{StaticResource LunaTreeViewItemToggleButtonTheme}" />
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                Grid.Column="1"
+                                Padding="2"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Focusable="False" />
+            </Grid>
+          </Border>
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          IsVisible="{TemplateBinding IsExpanded}"
+                          ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:empty /template/ ToggleButton#PART_ExpandCollapseChevron">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <!-- focused tree link uses the dialog-blue selection color with white text -->
+    <Style Selector="^:selected /template/ Border#SelectionBorder">
+      <Setter Property="Background" Value="{DynamicResource LunaSelectionBrush}" />
+    </Style>
+    <Style Selector="^:selected /template/ ContentPresenter#PART_HeaderPresenter">
+      <Setter Property="TextElement.Foreground" Value="White" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

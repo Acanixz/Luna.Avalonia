@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Luna.Avalonia.Demo/Luna.Avalonia.Demo.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Luna.Avalonia/Luna.Avalonia.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,131 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}" Width="200">
+      <StackPanel Spacing="20">
+        <Slider Value="40" />
+        <Slider Value="40" Orientation="Vertical" Height="100" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <ControlTheme x:Key="LunaSliderRepeatTrackTheme" TargetType="RepeatButton">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- Ported from XP.css themes/XP/_forms.scss input[type=range]. Structure adapted from
+       Avalonia's own Simple theme (Track/Thumb wiring). -->
+  <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
+    <Style Selector="^:horizontal">
+      <Setter Property="MinWidth" Value="40" />
+      <Setter Property="MinHeight" Value="21" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Name="LunaSliderGrid" RowDefinitions="Auto,Auto,Auto">
+            <Border Name="TrackBackground"
+                    Grid.Row="1"
+                    Height="2"
+                    Margin="6,0"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource LunaSliderTrackBrush}"
+                    BorderBrush="{DynamicResource LunaSliderTrackBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="2" />
+            <Track Name="PART_Track" Grid.Row="1"
+                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                   Orientation="Horizontal">
+              <Track.DecreaseButton>
+                <RepeatButton Name="PART_DecreaseButton" Theme="{StaticResource LunaSliderRepeatTrackTheme}" />
+              </Track.DecreaseButton>
+              <Track.IncreaseButton>
+                <RepeatButton Name="PART_IncreaseButton" Theme="{StaticResource LunaSliderRepeatTrackTheme}" />
+              </Track.IncreaseButton>
+              <Thumb Name="thumb" Width="11" Height="21">
+                <Thumb.Styles>
+                  <Style Selector="Thumb:pointerover /template/ Border#PART_ThumbBorder">
+                    <Setter Property="Background" Value="{DynamicResource LunaSliderThumbHoverGradientBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource LunaSliderThumbHoverBorderBrush}" />
+                  </Style>
+                </Thumb.Styles>
+                <Thumb.Template>
+                  <ControlTemplate>
+                    <Border Name="PART_ThumbBorder"
+                            Background="{DynamicResource LunaSliderThumbGradientBrush}"
+                            BorderBrush="{DynamicResource LunaSliderThumbBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                  </ControlTemplate>
+                </Thumb.Template>
+              </Thumb>
+            </Track>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^:vertical">
+      <Setter Property="MinWidth" Value="21" />
+      <Setter Property="MinHeight" Value="40" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Name="LunaSliderGrid" ColumnDefinitions="Auto,Auto,Auto">
+            <Border Name="TrackBackground"
+                    Grid.Column="1"
+                    Width="2"
+                    Margin="0,6"
+                    HorizontalAlignment="Center"
+                    Background="{DynamicResource LunaSliderTrackBrush}"
+                    BorderBrush="{DynamicResource LunaSliderTrackBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="2" />
+            <Track Name="PART_Track" Grid.Column="1"
+                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                   Orientation="Vertical">
+              <Track.DecreaseButton>
+                <RepeatButton Name="PART_DecreaseButton" Theme="{StaticResource LunaSliderRepeatTrackTheme}" />
+              </Track.DecreaseButton>
+              <Track.IncreaseButton>
+                <RepeatButton Name="PART_IncreaseButton" Theme="{StaticResource LunaSliderRepeatTrackTheme}" />
+              </Track.IncreaseButton>
+              <Thumb Name="thumb" Width="21" Height="11">
+                <Thumb.Styles>
+                  <Style Selector="Thumb:pointerover /template/ Border#PART_ThumbBorder">
+                    <Setter Property="Background" Value="{DynamicResource LunaSliderThumbHoverGradientBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource LunaSliderThumbHoverBorderBrush}" />
+                  </Style>
+                </Thumb.Styles>
+                <Thumb.Template>
+                  <ControlTemplate>
+                    <Border Name="PART_ThumbBorder"
+                            Background="{DynamicResource LunaSliderThumbGradientBrush}"
+                            BorderBrush="{DynamicResource LunaSliderThumbBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                  </ControlTemplate>
+                </Thumb.Template>
+              </Thumb>
+            </Track>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^ /template/ Track#PART_Track">
+      <Setter Property="Minimum" Value="{TemplateBinding Minimum}" />
+      <Setter Property="Maximum" Value="{TemplateBinding Maximum}" />
+      <Setter Property="Value" Value="{TemplateBinding Value, Mode=TwoWay}" />
+    </Style>
+    <Style Selector="^:disabled /template/ Grid#LunaSliderGrid">
+      <Setter Property="Opacity" Value="0.6" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

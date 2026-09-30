@@ -1,0 +1,8 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- A simplified, straight-edged checkmark glyph (vector recreation of themes/XP/icon/checkmark.svg's
+       pixel-art tick; exact per-pixel anti-aliasing isn't reproduced, per the icon-porting decision). -->
+  <StreamGeometry x:Key="LunaCheckMarkGeometry">M 1,7 L 4.5,10.5 L 11,2</StreamGeometry>
+
+</ResourceDictionary>

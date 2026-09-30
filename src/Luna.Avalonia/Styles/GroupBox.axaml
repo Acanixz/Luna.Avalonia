@@ -1,0 +1,51 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="30" Background="{DynamicResource LunaSurfaceBrush}" Width="220">
+      <GroupBox Header="Opções">
+        <TextBlock Text="Conteúdo do grupo" />
+      </GroupBox>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_groupbox.scss (fieldset/legend). Avalonia has no GroupBox
+       control, so this themes HeaderedContentControl directly (see Controls/GroupBox.cs) -
+       matching Classic.Avalonia's own approach. The legend's "cut into the border" look is
+       approximated with a same-color backdrop behind the header text rather than an actual
+       clipped border gap (which real fieldset/legend gets natively). -->
+  <ControlTheme x:Key="{x:Type HeaderedContentControl}" TargetType="HeaderedContentControl">
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Padding" Value="8" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid>
+          <Border Margin="0,7,0,0"
+                  Background="White"
+                  BorderBrush="{DynamicResource LunaGroupBoxBorderBrush}"
+                  BorderThickness="1"
+                  CornerRadius="{DynamicResource LunaGroupBoxCornerRadius}">
+            <ContentPresenter Margin="{TemplateBinding Padding}"
+                               Content="{TemplateBinding Content}"
+                               ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </Border>
+          <ContentPresenter Name="PART_HeaderPresenter"
+                             Background="{DynamicResource LunaSurfaceBrush}"
+                             Foreground="{DynamicResource LunaGroupBoxHeaderBrush}"
+                             Padding="4,0"
+                             Margin="10,0,0,0"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Content="{TemplateBinding Header}"
+                             ContentTemplate="{TemplateBinding HeaderTemplate}"
+                             IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

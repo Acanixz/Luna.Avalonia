@@ -1,0 +1,69 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- Ported from XP.css themes/XP/_tabs.scss. The orange top border + gold accent line (the
+       Luna "selected tab" signature) is drawn entirely via BoxShadow instead of a two-tone
+       BorderBrush, since a Border/ContentPresenter can only have one border color at a time.
+
+       The "selected tab grows taller" effect (gui/_tabs.scss margin-top: -2px) is done by
+       giving every TabItem the SAME fixed outer Height (so a selection change never resizes
+       the item the panel reserves space for - that was shifting/misaligning neighboring tabs)
+       and instead varying the *inner* ContentPresenter's own top margin within that fixed slot:
+       less top margin for the selected tab makes its visible face taller without touching
+       layout. -->
+  <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
+    <Setter Property="Height" Value="23" />
+    <Setter Property="Margin" Value="-1,0,2,0" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                           Margin="0,3,0,0"
+                           Padding="12,0"
+                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                           Background="{DynamicResource LunaTabInactiveGradientBrush}"
+                           BorderBrush="{DynamicResource LunaTabBorderBrush}"
+                           BorderThickness="1,1,1,0"
+                           CornerRadius="{DynamicResource LunaTabCornerRadius}"
+                           Content="{TemplateBinding Header}"
+                           ContentTemplate="{TemplateBinding HeaderTemplate}" />
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="RecognizesAccessKey" Value="True" />
+    </Style>
+
+    <!-- The BoxShadow-based glow (same LunaGlowAmberBoxShadow Button uses on :pointerover) turned
+         out to barely show here - PART_ContentPresenter has no bottom border (BorderThickness
+         1,1,1,0, so it merges into the panel below) and that asymmetry seems to throw off the
+         inset shadow's geometry. A solid amber BorderBrush is simpler and unmistakably visible
+         regardless of that quirk, even though it colors all three sides instead of just the top
+         hairline XP.css draws. -->
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="{DynamicResource LunaTabAccentBrush}" />
+    </Style>
+
+    <!-- selected: flat #fcfcfe background, bottom border removed (merges into the panel below),
+         no top margin so it fills the full (fixed) slot height instead of the usual 3px inset. -->
+    <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="Background" Value="#fcfcfe" />
+      <Setter Property="BorderBrush" Value="{DynamicResource LunaTabAccentBrush}" />
+      <Setter Property="BorderThickness" Value="2,2,2,0" />
+    </Style>
+
+    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Opacity" Value="0.6" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

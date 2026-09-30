@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Luna.Avalonia</PackageId>
+    <Description>A Windows XP "Luna" visual theme for Avalonia UI, ported from XP.css.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+</Project>

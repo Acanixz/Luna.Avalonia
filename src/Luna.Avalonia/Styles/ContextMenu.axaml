@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- No source in XP.css - shares the same popup chrome as MenuItem/Menu submenus. -->
+  <ControlTheme x:Key="{x:Type ContextMenu}" TargetType="ContextMenu">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <ScrollViewer>
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            KeyboardNavigation.TabNavigation="Continue" />
+          </ScrollViewer>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

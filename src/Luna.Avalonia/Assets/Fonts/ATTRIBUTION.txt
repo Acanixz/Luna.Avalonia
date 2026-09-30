@@ -1,0 +1,17 @@
+MS Sans Serif.ttf / MS Sans Serif Bold.ttf
+===========================================
+
+The FontStruction "MS Sans Serif" (https://fontstruct.com/fontstructions/show/1384746)
+and "MS Sans Serif Bold" (https://fontstruct.com/fontstructions/show/1384862), both by
+"lou", are licensed under a Creative Commons Attribution Share Alike 3.0 license
+(http://creativecommons.org/licenses/by-sa/3.0/).
+
+Created with Fontstruct, the free online font-building tool (http://fontstruct.com).
+Fontstruct is copyright (c) 2017 Rob Meek.
+
+These files were originally redistributed via the XP.css project
+(https://github.com/botoxparty/XP.css), under `gui/fonts/src/`, and are vendored
+here unmodified for use as the Luna.Avalonia theme's UI font.
+
+If you redistribute these font files, you must comply with the CC BY-SA 3.0 license
+terms above and keep this attribution file alongside them.

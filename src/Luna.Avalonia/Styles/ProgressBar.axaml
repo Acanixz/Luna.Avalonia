@@ -1,0 +1,101 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}" Width="200">
+      <StackPanel Spacing="12">
+        <ProgressBar Value="60" />
+        <ProgressBar IsIndeterminate="True" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_progressbar.scss. The indeterminate animation reuses
+       ProgressBar's own TemplateSettings offsets, the same mechanism Avalonia's built-in
+       themes use (see Avalonia.Themes.Simple's ProgressBar.xaml) - just with Luna's green
+       striped fill instead of a flat accent color. -->
+  <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaProgressTrackBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource LunaProgressBarCornerRadius}" />
+    <Setter Property="MinHeight" Value="14" />
+    <Setter Property="MinWidth" Value="14" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                BoxShadow="{DynamicResource LunaProgressTrackBoxShadow}"
+                ClipToBounds="True">
+          <Panel Margin="1">
+            <Border Name="PART_Indicator"
+                    CornerRadius="{DynamicResource LunaProgressFillCornerRadius}"
+                    Background="{DynamicResource LunaProgressFillGradientBrush}"
+                    IsVisible="{Binding !IsIndeterminate, RelativeSource={RelativeSource TemplatedParent}}">
+              <Rectangle Fill="{DynamicResource LunaProgressStripeBrush}" />
+            </Border>
+            <!-- A block sweeping across an otherwise-empty track (Avalonia's own stock
+                 indeterminate mechanism, via TemplateSettings' offsets) rather than a
+                 continuously-scrolling full-width bar - the source CSS actually does the latter,
+                 but this reads better here and was the requested look. -->
+            <Border Name="PART_IndeterminateIndicator"
+                    CornerRadius="{DynamicResource LunaProgressFillCornerRadius}"
+                    Background="{DynamicResource LunaProgressFillGradientBrush}"
+                    IsVisible="{Binding IsIndeterminate, RelativeSource={RelativeSource TemplatedParent}}">
+              <Rectangle Fill="{DynamicResource LunaProgressStripeBrush}" />
+            </Border>
+          </Panel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:horizontal /template/ Border#PART_Indicator">
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="^:vertical /template/ Border#PART_Indicator">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+    <Style Selector="^:horizontal">
+      <Setter Property="MinWidth" Value="150" />
+    </Style>
+    <Style Selector="^:vertical">
+      <Setter Property="MinHeight" Value="150" />
+    </Style>
+
+    <!-- Slower than a typical default sweep (4s vs. the usual ~2s) since a full-track-width
+         block moving briskly read as "too fast" at the original speed. -->
+    <Style Selector="^:horizontal:indeterminate /template/ Border#PART_IndeterminateIndicator">
+      <Style.Animations>
+        <Animation Easing="LinearEasing" IterationCount="Infinite" Duration="0:0:4">
+          <KeyFrame Cue="0%">
+            <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.IndeterminateStartingOffset}" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.IndeterminateEndingOffset}" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+      <Setter Property="Width" Value="{Binding TemplateSettings.ContainerWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+    </Style>
+    <Style Selector="^:vertical:indeterminate /template/ Border#PART_IndeterminateIndicator">
+      <Style.Animations>
+        <Animation Easing="LinearEasing" IterationCount="Infinite" Duration="0:0:4">
+          <KeyFrame Cue="0%">
+            <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.IndeterminateStartingOffset}" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.IndeterminateEndingOffset}" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+      <Setter Property="Height" Value="{Binding TemplateSettings.ContainerWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

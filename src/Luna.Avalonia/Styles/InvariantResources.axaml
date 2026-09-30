@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- Fonts -->
+  <FontFamily x:Key="LunaSansSerifFontFamily">avares://Luna.Avalonia/Assets/Fonts/MS Sans Serif.ttf#MS Sans Serif, Tahoma, Segoe UI, $Default</FontFamily>
+  <FontFamily x:Key="LunaSansSerifBoldFontFamily">avares://Luna.Avalonia/Assets/Fonts/MS Sans Serif Bold.ttf#MS Sans Serif Bold, Tahoma, Segoe UI, $Default</FontFamily>
+
+  <!-- Trebuchet MS is a proprietary system font (title bar in the original Luna theme) and cannot be embedded;
+       fall back to common system sans fonts when it isn't installed. -->
+  <FontFamily x:Key="LunaTitleBarFontFamily">Trebuchet MS, Segoe UI, Tahoma, $Default</FontFamily>
+
+  <x:Double x:Key="LunaFontSizeSmall">9</x:Double>
+  <x:Double x:Key="LunaFontSizeNormal">11</x:Double>
+  <x:Double x:Key="LunaFontSizeCaption">13</x:Double>
+
+  <!-- Corner radii -->
+  <CornerRadius x:Key="LunaButtonCornerRadius">3</CornerRadius>
+  <CornerRadius x:Key="LunaGroupBoxCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="LunaProgressBarCornerRadius">4</CornerRadius>
+  <CornerRadius x:Key="LunaProgressFillCornerRadius">2</CornerRadius>
+  <CornerRadius x:Key="LunaScrollThumbCornerRadius">2</CornerRadius>
+
+  <!-- Window chrome: rounded top corners only, bottom square.
+       The overall window frame uses 8/8; the title bar nests inside it with a slightly
+       tighter top-right radius (7) per themes/XP/_window.scss. -->
+  <CornerRadius x:Key="LunaWindowCornerRadius">8,8,0,0</CornerRadius>
+  <CornerRadius x:Key="LunaTitleBarCornerRadius">8,7,0,0</CornerRadius>
+
+  <!-- Sizing -->
+  <x:Double x:Key="LunaCaptionButtonSize">21</x:Double>
+  <x:Double x:Key="LunaTitleBarHeight">28</x:Double>
+  <!-- Windows subtracts some of the resize-border compensation from our height hint specifically
+       when maximized, making the reserved title bar area come out shorter than requested; this
+       compensates back so it doesn't feel cramped there. -->
+  <x:Double x:Key="LunaTitleBarHeightMaximized">31</x:Double>
+
+  <!-- CheckBox / RadioButton: both are 13x13 boxes (themes/XP/_forms.scss radio/checkbox width vars) -->
+  <x:Double x:Key="LunaCheckRadioBoxSize">13</x:Double>
+  <CornerRadius x:Key="LunaRadioCornerRadius">6.5</CornerRadius>
+
+  <CornerRadius x:Key="LunaTabCornerRadius">3,3,0,0</CornerRadius>
+
+  <!-- ScrollBar: 17px wide/tall (themes/XP/_global.scss ::-webkit-scrollbar width) -->
+  <x:Double x:Key="LunaScrollBarThickness">17</x:Double>
+  <x:Double x:Key="LunaScrollBarThumbThickness">17</x:Double>
+
+</ResourceDictionary>

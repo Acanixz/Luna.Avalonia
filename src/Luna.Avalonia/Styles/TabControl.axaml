@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}" Width="300" Height="150">
+      <TabControl>
+        <TabItem Header="Aba 1"><TextBlock Text="Conteúdo 1" Margin="8" /></TabItem>
+        <TabItem Header="Aba 2"><TextBlock Text="Conteúdo 2" Margin="8" /></TabItem>
+      </TabControl>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Template structure adapted from Avalonia's own Simple theme (multi-placement DockPanel
+       layout); only TabStripPlacement=Top gets Luna's specific visual treatment, matching
+       XP.css themes/XP/_tabs.scss which only defines a horizontal top tab strip. -->
+  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+    <Setter Property="Padding" Value="0,4,0,0" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}">
+          <DockPanel>
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            DockPanel.Dock="Top"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            Margin="3,0,0,0" />
+            <!-- box-shadow + border ported from [role=tabpanel] (themes/XP/_tabs.scss + gui/_tabs.scss) -->
+            <ContentPresenter Name="PART_SelectedContentHost"
+                               Margin="0,-1,0,0"
+                               Padding="14"
+                               Background="{DynamicResource LunaTabPanelGradientBrush}"
+                               BorderBrush="{DynamicResource LunaTabPanelBorderBrush}"
+                               BorderThickness="1"
+                               BoxShadow="{DynamicResource LunaTabPanelBoxShadow}"
+                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Content="{TemplateBinding SelectedContent}"
+                               ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

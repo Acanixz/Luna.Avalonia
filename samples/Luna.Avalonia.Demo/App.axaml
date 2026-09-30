@@ -1,0 +1,8 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:luna="using:Luna.Avalonia"
+             x:Class="Luna.Avalonia.Demo.App">
+  <Application.Styles>
+    <luna:LunaTheme />
+  </Application.Styles>
+</Application>

@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:luna="clr-namespace:Luna.Avalonia">
+  <ResourceDictionary.ThemeDictionaries>
+    <!-- "Default" makes the Blue palette resolve even if the consuming app never sets
+         Application.RequestedThemeVariant. "Blue" (a custom ThemeVariant, must be keyed via
+         x:Static rather than a bare string) is the explicit, forward-compatible key once
+         Olive/Silver variants are added alongside it. -->
+    <ResourceDictionary x:Key="Default">
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Colors/Blue.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+    <ResourceDictionary x:Key="{x:Static luna:LunaTheme.Blue}">
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Colors/Blue.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

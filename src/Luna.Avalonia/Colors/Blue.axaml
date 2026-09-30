@@ -1,0 +1,229 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- Surface / general text -->
+  <Color x:Key="LunaSurfaceColor">#ece9d8</Color>
+  <SolidColorBrush x:Key="LunaSurfaceBrush" Color="{StaticResource LunaSurfaceColor}" />
+
+  <Color x:Key="LunaWindowTextColor">#000000</Color>
+  <SolidColorBrush x:Key="LunaWindowTextBrush" Color="{StaticResource LunaWindowTextColor}" />
+
+  <Color x:Key="LunaDisabledTextColor">#808080</Color>
+  <SolidColorBrush x:Key="LunaDisabledTextBrush" Color="{StaticResource LunaDisabledTextColor}" />
+
+  <!-- Button (themes/XP/_buttons.scss) -->
+  <Color x:Key="LunaButtonBorderColor">#003c74</Color>
+  <SolidColorBrush x:Key="LunaButtonBorderBrush" Color="{StaticResource LunaButtonBorderColor}" />
+
+  <LinearGradientBrush x:Key="LunaButtonFaceGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#ffffff" />
+    <GradientStop Offset="0.86" Color="#ecebe5" />
+    <GradientStop Offset="1" Color="#d8d0c4" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="LunaButtonPressedGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#cdcac3" />
+    <GradientStop Offset="0.08" Color="#e3e3db" />
+    <GradientStop Offset="0.94" Color="#e5e5de" />
+    <GradientStop Offset="1" Color="#f2f2f1" />
+  </LinearGradientBrush>
+
+  <!-- Hover / focus "glow" rings, shared by Button/CheckBox/RadioButton -->
+  <BoxShadows x:Key="LunaGlowAmberBoxShadow">inset -1 1 #fff0cf, inset 1 2 #fdd889, inset -2 2 #fbc761, inset 2 -2 #e5a01a</BoxShadows>
+  <BoxShadows x:Key="LunaGlowFocusBoxShadow">inset -1 1 #cee7ff, inset 1 2 #98b8ea, inset -2 2 #bcd4f6, inset 1 -1 #89ade4, inset 2 -2 #89ade4</BoxShadows>
+
+  <!-- CheckBox / RadioButton (themes/XP/_forms.scss) -->
+  <LinearGradientBrush x:Key="LunaCheckRadioFaceGradientBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+    <GradientStop Offset="0" Color="#dcdcd7" />
+    <GradientStop Offset="1" Color="#ffffff" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="LunaCheckRadioPressedGradientBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+    <GradientStop Offset="0" Color="#b0b0a7" />
+    <GradientStop Offset="1" Color="#e3e1d2" />
+  </LinearGradientBrush>
+
+  <Color x:Key="LunaCheckRadioBorderColor">#1d5281</Color>
+  <SolidColorBrush x:Key="LunaCheckRadioBorderBrush" Color="{StaticResource LunaCheckRadioBorderColor}" />
+
+  <Color x:Key="LunaCheckRadioBorderDisabledColor">#cac8bb</Color>
+  <SolidColorBrush x:Key="LunaCheckRadioBorderDisabledBrush" Color="{StaticResource LunaCheckRadioBorderDisabledColor}" />
+
+  <!-- box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c -->
+  <BoxShadows x:Key="LunaCheckRadioHoverGlow">inset -2 -2 #f8b636, inset 2 2 #fedf9c</BoxShadows>
+
+  <Color x:Key="LunaAccentGreenColor">#22a122</Color>
+  <SolidColorBrush x:Key="LunaAccentGreenBrush" Color="{StaticResource LunaAccentGreenColor}" />
+
+  <SolidColorBrush x:Key="LunaCheckRadioDisabledGlyphBrush" Color="{StaticResource LunaCheckRadioBorderDisabledColor}" />
+
+  <!-- TextBox (themes/XP/_forms.scss + gui/_forms.scss) -->
+  <Color x:Key="LunaInputBorderColor">#7f9db9</Color>
+  <SolidColorBrush x:Key="LunaInputBorderBrush" Color="{StaticResource LunaInputBorderColor}" />
+
+  <Color x:Key="LunaSelectionColor">#2267cb</Color>
+  <SolidColorBrush x:Key="LunaSelectionBrush" Color="{StaticResource LunaSelectionColor}" />
+
+  <!-- Window chrome (themes/XP/_window.scss) -->
+  <!-- 6-layer inset frame drawn around the whole window, simulating the engraved blue border. -->
+  <BoxShadows x:Key="LunaWindowFrameBoxShadow">inset -1 -1 #00138c, inset 1 1 #0831d9, inset -2 -2 #001ea0, inset 2 2 #166aee, inset -3 -3 #003bda, inset 3 3 #0855dd</BoxShadows>
+
+  <!-- Not defined by XP.css - a desaturated version of the frame above for the inactive window
+       state, same layer structure/luminance, just grayed out. -->
+  <BoxShadows x:Key="LunaWindowFrameInactiveBoxShadow">inset -1 -1 #6b6b78, inset 1 1 #7d7d8c, inset -2 -2 #74747f, inset 2 2 #8f8f9c, inset -3 -3 #7a7a86, inset 3 3 #8c8c96</BoxShadows>
+
+  <LinearGradientBrush x:Key="LunaTitleBarActiveGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#0997ff" />
+    <GradientStop Offset="0.08" Color="#0053ee" />
+    <GradientStop Offset="0.40" Color="#0050ee" />
+    <GradientStop Offset="0.88" Color="#0066ff" />
+    <GradientStop Offset="0.93" Color="#0066ff" />
+    <GradientStop Offset="0.95" Color="#005bff" />
+    <GradientStop Offset="0.96" Color="#003dd7" />
+    <GradientStop Offset="1" Color="#003dd7" />
+  </LinearGradientBrush>
+
+  <!-- Not defined by XP.css (a static stylesheet has no notion of window focus) - a desaturated
+       approximation of the active gradient, same stop positions, for the inactive window state. -->
+  <LinearGradientBrush x:Key="LunaTitleBarInactiveGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#a6b8e8" />
+    <GradientStop Offset="0.08" Color="#8b9fd8" />
+    <GradientStop Offset="0.40" Color="#8899d4" />
+    <GradientStop Offset="0.88" Color="#93a4dc" />
+    <GradientStop Offset="0.93" Color="#93a4dc" />
+    <GradientStop Offset="0.95" Color="#8b9bd0" />
+    <GradientStop Offset="0.96" Color="#7686b8" />
+    <GradientStop Offset="1" Color="#7686b8" />
+  </LinearGradientBrush>
+
+  <Color x:Key="LunaTitleBarBorderColor">#0831d9</Color>
+  <SolidColorBrush x:Key="LunaTitleBarBorderBrush" Color="{StaticResource LunaTitleBarBorderColor}" />
+
+  <SolidColorBrush x:Key="LunaTitleBarTextBrush" Color="White" />
+
+  <!-- Lighter than the title bar's own blue on purpose, so the buttons stand out against it.
+       Diagonal gradient sampled from the 4 corners of a real Luna caption-button icon
+       (top-left #90AFF9 lightest, bottom-right #0045D3 darkest; the middle stop averages the
+       other two sampled corners, #235CE3/#134FDF, since a LinearGradientBrush only has two true
+       endpoints and this is the closest 3-stop approximation of all 4 samples). -->
+  <LinearGradientBrush x:Key="LunaCaptionButtonBackgroundBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+    <GradientStop Offset="0" Color="#90AFF9" />
+    <GradientStop Offset="0.5" Color="#1B55E1" />
+    <GradientStop Offset="1" Color="#0045D3" />
+  </LinearGradientBrush>
+
+  <!-- Approximation to match the inactive title bar gradient (see above). -->
+  <Color x:Key="LunaCaptionButtonInactiveBackgroundColor">#7d8cc4</Color>
+  <SolidColorBrush x:Key="LunaCaptionButtonInactiveBackgroundBrush" Color="{StaticResource LunaCaptionButtonInactiveBackgroundColor}" />
+
+  <!-- Close button uses its own red icon graphic in the original (icon/close.svg), unlike the
+       shared blue of min/max/restore. Same diagonal-sample technique as the blue button (corners
+       #EFA390 top-left, #C22A00 bottom-right, middle stop averaging #D04623/#CC3813). -->
+  <LinearGradientBrush x:Key="LunaCaptionCloseBackgroundBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+    <GradientStop Offset="0" Color="#EFA390" />
+    <GradientStop Offset="0.5" Color="#CE3F1B" />
+    <GradientStop Offset="1" Color="#C22A00" />
+  </LinearGradientBrush>
+  <SolidColorBrush x:Key="LunaCaptionCloseHoverBrush" Color="#f26a48" />
+  <SolidColorBrush x:Key="LunaCaptionClosePressedBrush" Color="#a83a1c" />
+
+  <!-- Tabs (themes/XP/_tabs.scss + gui/_tabs.scss) -->
+  <Color x:Key="LunaTabBorderColor">#91a7b4</Color>
+  <SolidColorBrush x:Key="LunaTabBorderBrush" Color="{StaticResource LunaTabBorderColor}" />
+
+  <Color x:Key="LunaTabPanelBorderColor">#919b9c</Color>
+  <SolidColorBrush x:Key="LunaTabPanelBorderBrush" Color="{StaticResource LunaTabPanelBorderColor}" />
+
+  <LinearGradientBrush x:Key="LunaTabInactiveGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#ffffff" />
+    <GradientStop Offset="0.26" Color="#fafaf9" />
+    <GradientStop Offset="0.95" Color="#f0f0ea" />
+    <GradientStop Offset="1" Color="#ecebe5" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="LunaTabPanelGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#fcfcfe" />
+    <GradientStop Offset="1" Color="#f4f3ee" />
+  </LinearGradientBrush>
+
+  <Color x:Key="LunaTabAccentColor">#e68b2c</Color>
+  <SolidColorBrush x:Key="LunaTabAccentBrush" Color="{StaticResource LunaTabAccentColor}" />
+
+  <!-- box-shadow: inset 0px 2px #ffc73c (gold accent line just under the top border) -->
+  <BoxShadows x:Key="LunaTabHighlightBoxShadow">inset 0 2 #ffc73c</BoxShadows>
+
+  <!-- box-shadow: inset 1px 1px #fcfcfe, inset -1px -1px #fcfcfe, 1px 2px 2px 0px rgba(208,206,191,.75) -->
+  <BoxShadows x:Key="LunaTabPanelBoxShadow">inset 1 1 #fcfcfe, inset -1 -1 #fcfcfe, 1 2 2 0 rgba(208,206,191,0.75)</BoxShadows>
+
+  <!-- ScrollBar (themes/XP/_global.scss) - the original's tiled SVG track/thumb texture is
+       simplified to flat colors (see icon-porting decision). -->
+  <Color x:Key="LunaScrollTrackColor">#e9eefc</Color>
+  <SolidColorBrush x:Key="LunaScrollTrackBrush" Color="{StaticResource LunaScrollTrackColor}" />
+
+  <Color x:Key="LunaScrollThumbColor">#c8d6fb</Color>
+  <SolidColorBrush x:Key="LunaScrollThumbBrush" Color="{StaticResource LunaScrollThumbColor}" />
+
+  <Color x:Key="LunaScrollThumbHoverColor">#b6c9f7</Color>
+  <SolidColorBrush x:Key="LunaScrollThumbHoverBrush" Color="{StaticResource LunaScrollThumbHoverColor}" />
+
+  <Color x:Key="LunaScrollArrowColor">#4d6185</Color>
+  <SolidColorBrush x:Key="LunaScrollArrowBrush" Color="{StaticResource LunaScrollArrowColor}" />
+
+  <!-- ProgressBar (themes/XP/_progressbar.scss) -->
+  <Color x:Key="LunaProgressTrackBorderColor">#686868</Color>
+  <SolidColorBrush x:Key="LunaProgressTrackBorderBrush" Color="{StaticResource LunaProgressTrackBorderColor}" />
+
+  <!-- box-shadow: inset 0 0 1px rgba(104,104,104,1) -->
+  <BoxShadows x:Key="LunaProgressTrackBoxShadow">inset 0 0 1 rgba(104,104,104,1)</BoxShadows>
+
+  <LinearGradientBrush x:Key="LunaProgressFillGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#acedad" />
+    <GradientStop Offset="0.14" Color="#7be47d" />
+    <GradientStop Offset="0.28" Color="#4cda50" />
+    <GradientStop Offset="0.42" Color="#2ed330" />
+    <GradientStop Offset="0.57" Color="#42d845" />
+    <GradientStop Offset="0.71" Color="#76e275" />
+    <GradientStop Offset="0.85" Color="#8fe791" />
+    <GradientStop Offset="1" Color="#ffffff" />
+  </LinearGradientBrush>
+
+  <!-- Slider (themes/XP/_forms.scss input[type=range]). The original's tiled multi-shadow bevel
+       track and pixel-art thumb graphic are simplified to a flat sunken track + solid thumb
+       (see icon-porting decision). -->
+  <Color x:Key="LunaSliderTrackColor">#ecebe4</Color>
+  <SolidColorBrush x:Key="LunaSliderTrackBrush" Color="{StaticResource LunaSliderTrackColor}" />
+
+  <Color x:Key="LunaSliderTrackBorderColor">#9d9c99</Color>
+  <SolidColorBrush x:Key="LunaSliderTrackBorderBrush" Color="{StaticResource LunaSliderTrackBorderColor}" />
+
+  <LinearGradientBrush x:Key="LunaSliderThumbGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#ffffff" />
+    <GradientStop Offset="1" Color="#c2cfd8" />
+  </LinearGradientBrush>
+
+  <Color x:Key="LunaSliderThumbBorderColor">#7f95a3</Color>
+  <SolidColorBrush x:Key="LunaSliderThumbBorderBrush" Color="{StaticResource LunaSliderThumbBorderColor}" />
+
+  <!-- Not from XP.css's own thumb graphic - real Windows XP trackbars hot-track green on hover,
+       so the hover state is ported from that instead. -->
+  <LinearGradientBrush x:Key="LunaSliderThumbHoverGradientBrush" StartPoint="0%,0%" EndPoint="0%,100%">
+    <GradientStop Offset="0" Color="#eafce0" />
+    <GradientStop Offset="1" Color="#7fc25c" />
+  </LinearGradientBrush>
+  <Color x:Key="LunaSliderThumbHoverBorderColor">#4a8f2e</Color>
+  <SolidColorBrush x:Key="LunaSliderThumbHoverBorderBrush" Color="{StaticResource LunaSliderThumbHoverBorderColor}" />
+
+  <!-- GroupBox (themes/XP/_groupbox.scss) -->
+  <Color x:Key="LunaGroupBoxBorderColor">#d0d0bf</Color>
+  <SolidColorBrush x:Key="LunaGroupBoxBorderBrush" Color="{StaticResource LunaGroupBoxBorderColor}" />
+
+  <Color x:Key="LunaGroupBoxHeaderColor">#0046d5</Color>
+  <SolidColorBrush x:Key="LunaGroupBoxHeaderBrush" Color="{StaticResource LunaGroupBoxHeaderColor}" />
+
+  <!-- StatusBar (themes/XP/_window.scss .status-bar / .status-bar-field) -->
+  <!-- box-shadow: inset 0px 1px 2px, using the button-shadow gray (#808080) -->
+  <BoxShadows x:Key="LunaStatusBarBoxShadow">inset 0 1 2 #808080</BoxShadows>
+  <SolidColorBrush x:Key="LunaStatusBarDividerDarkBrush" Color="#d0cebf" Opacity="0.75" />
+  <SolidColorBrush x:Key="LunaStatusBarDividerLightBrush" Color="White" Opacity="0.75" />
+
+</ResourceDictionary>

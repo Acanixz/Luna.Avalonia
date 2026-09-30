@@ -1,0 +1,33 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Aggregator: one MergeResourceInclude per control ControlTheme file, added as each
+       control is themed (see the implementation plan's phase sequencing). -->
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="/Styles/Button.axaml" />
+        <MergeResourceInclude Source="/Styles/CheckBox.axaml" />
+        <MergeResourceInclude Source="/Styles/RadioButton.axaml" />
+        <MergeResourceInclude Source="/Styles/TextBox.axaml" />
+        <MergeResourceInclude Source="/Styles/ComboBox.axaml" />
+        <MergeResourceInclude Source="/Styles/TabControl.axaml" />
+        <MergeResourceInclude Source="/Styles/TabItem.axaml" />
+        <MergeResourceInclude Source="/Styles/ScrollBar.axaml" />
+        <MergeResourceInclude Source="/Styles/ProgressBar.axaml" />
+        <MergeResourceInclude Source="/Styles/Slider.axaml" />
+        <MergeResourceInclude Source="/Styles/TreeView.axaml" />
+        <MergeResourceInclude Source="/Styles/TreeViewItem.axaml" />
+        <MergeResourceInclude Source="/Styles/GroupBox.axaml" />
+        <MergeResourceInclude Source="/Styles/StatusBar.axaml" />
+        <MergeResourceInclude Source="/Styles/ListBox.axaml" />
+        <MergeResourceInclude Source="/Styles/ToolTip.axaml" />
+        <MergeResourceInclude Source="/Styles/MenuItem.axaml" />
+        <MergeResourceInclude Source="/Styles/Menu.axaml" />
+        <MergeResourceInclude Source="/Styles/ContextMenu.axaml" />
+        <MergeResourceInclude Source="/Styles/CaptionButtons.axaml" />
+        <MergeResourceInclude Source="/Styles/TitleBar.axaml" />
+        <MergeResourceInclude Source="/Styles/Window.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+</Styles>

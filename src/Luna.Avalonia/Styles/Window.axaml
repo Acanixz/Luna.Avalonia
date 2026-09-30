@@ -1,0 +1,78 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- Ported from XP.css themes/XP/_window.scss (.window). Always draws its own chrome via the
+       managed TitleBar/CaptionButtons overrides (Styles/TitleBar.axaml, Styles/CaptionButtons.axaml);
+       SystemDecorations stays Full (not None) because dragging/resizing break on Windows otherwise -
+       same trade-off Classic.Avalonia documents for its own chrome.
+       ExtendClientAreaChromeHints must keep the PreferSystemChrome bit: Avalonia's own TitleBar
+       only makes itself visible (Window.PlatformImpl.NeedsManagedDecorations) when that flag is
+       set - NoChrome would hide our whole title bar (and collapse WindowDecorationMargin to ~0). -->
+  <ControlTheme x:Key="{x:Type Window}" TargetType="Window">
+    <Setter Property="Background" Value="{DynamicResource LunaSurfaceBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="MinWidth" Value="150" />
+    <Setter Property="MinHeight" Value="50" />
+    <Setter Property="ExtendClientAreaChromeHints" Value="PreferSystemChrome" />
+    <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="{DynamicResource LunaTitleBarHeight}" />
+    <Setter Property="SystemDecorations" Value="Full" />
+    <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+          <Border Background="{TemplateBinding Background}"
+                  CornerRadius="{DynamicResource LunaWindowCornerRadius}"
+                  IsHitTestVisible="False" />
+          <VisualLayerManager>
+            <VisualLayerManager.ChromeOverlayLayer>
+              <TitleBar />
+            </VisualLayerManager.ChromeOverlayLayer>
+            <!-- OffScreenMargin compensates for the sliver Windows pushes off-screen around a
+                 maximized window (to hide its invisible resize border) - the built-in TitleBar
+                 already applies this to itself internally, but our content wasn't, which was
+                 letting it extend slightly past the visible screen edge (clipping the status
+                 bar) while also drifting out of sync with where the title bar actually sits. -->
+            <Panel Margin="{TemplateBinding OffScreenMargin}">
+              <!-- VisualLayerManager arranges every layer (including the chrome one) to its own
+                   full bounds - it does NOT reserve space for the title bar on its own. Without
+                   this margin, window content starts at y=0 and sits underneath the title bar
+                   (hidden, but still hit-testable - it was intercepting drag/double-click there). -->
+              <Panel Margin="{TemplateBinding WindowDecorationMargin}">
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+              </Panel>
+            </Panel>
+          </VisualLayerManager>
+          <!-- box-shadow: inset -1px -1px #00138c, inset 1px 1px #0831d9, ... (6-layer engraved frame) -->
+          <Border Name="PART_FrameAccent"
+                  CornerRadius="{DynamicResource LunaWindowCornerRadius}"
+                  BoxShadow="{DynamicResource LunaWindowFrameBoxShadow}"
+                  IsHitTestVisible="False" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[WindowState=Maximized]">
+      <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="{DynamicResource LunaTitleBarHeightMaximized}" />
+      <Style Selector="^ /template/ Border#PART_FrameAccent">
+        <Setter Property="BoxShadow" Value="none" />
+      </Style>
+    </Style>
+
+    <!-- Not defined by XP.css - desaturates the engraved frame for the inactive window state,
+         matching the same approximation used for the title bar gradient. -->
+    <Style Selector="^[IsActive=False] /template/ Border#PART_FrameAccent">
+      <Setter Property="BoxShadow" Value="{DynamicResource LunaWindowFrameInactiveBoxShadow}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

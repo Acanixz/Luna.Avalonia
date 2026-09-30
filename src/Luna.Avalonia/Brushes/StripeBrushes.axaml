@@ -1,0 +1,19 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- repeating-linear-gradient(to right, #fff 0-2px, transparent 2-10px) - the ProgressBar's
+       "marching blocks" stripe overlay, tiled the same way Classic.Avalonia tiles its own
+       dither pattern (a small VisualBrush repeated via TileMode). -->
+  <VisualBrush x:Key="LunaProgressStripeBrush"
+               TileMode="Tile"
+               Stretch="None"
+               DestinationRect="0,0,10,12"
+               SourceRect="0,0,10,12">
+    <VisualBrush.Visual>
+      <Canvas Width="10" Height="12">
+        <Rectangle Width="2" Height="12" Fill="White" />
+      </Canvas>
+    </VisualBrush.Visual>
+  </VisualBrush>
+
+</ResourceDictionary>

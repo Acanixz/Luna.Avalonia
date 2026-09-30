@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="10" Background="{DynamicResource LunaSurfaceBrush}" Width="300">
+      <StatusBar>
+        <StatusBarItem Content="Pronto" />
+        <StatusBarItem Content="Ln 1, Col 1" />
+      </StatusBar>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_window.scss .status-bar/.status-bar-field. Uses the
+       Controls/StatusBar.cs + StatusBarItem.cs port of Classic.Avalonia's own StatusBar,
+       since Avalonia has no built-in one. -->
+  <ControlTheme x:Key="{x:Type StatusBar}" TargetType="StatusBar">
+    <Setter Property="Background" Value="{DynamicResource LunaSurfaceBrush}" />
+    <Setter Property="Padding" Value="3,2" />
+    <Setter Property="MinHeight" Value="20" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                Padding="{TemplateBinding Padding}"
+                BoxShadow="{DynamicResource LunaStatusBarBoxShadow}">
+          <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- border-right: 1px solid rgba(208,206,191,.75); border-left: 1px solid rgba(255,255,255,.75) -->
+  <ControlTheme x:Key="{x:Type StatusBarItem}" TargetType="StatusBarItem">
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border BorderBrush="{DynamicResource LunaStatusBarDividerDarkBrush}" BorderThickness="0,0,1,0">
+          <Border BorderBrush="{DynamicResource LunaStatusBarDividerLightBrush}" BorderThickness="1,0,0,0">
+            <ContentPresenter Padding="4,1"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </Border>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

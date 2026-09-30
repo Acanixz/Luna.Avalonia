@@ -1,0 +1,97 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}">
+      <StackPanel Spacing="12">
+        <CheckBox Content="Unchecked" />
+        <CheckBox Content="Checked" IsChecked="True" />
+        <CheckBox Content="Indeterminate" IsChecked="{x:Null}" />
+        <CheckBox Content="Disabled" IsEnabled="False" />
+        <CheckBox Content="Disabled checked" IsEnabled="False" IsChecked="True" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_forms.scss (checkbox rules) + gui/_forms.scss (structure). -->
+  <ControlTheme x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+    <Setter Property="Background" Value="{DynamicResource LunaCheckRadioFaceGradientBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaCheckRadioBorderBrush}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Cursor" Value="Arrow" />
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="Auto,*">
+          <Border Name="PART_Border"
+                  Grid.Column="0"
+                  Width="{DynamicResource LunaCheckRadioBoxSize}"
+                  Height="{DynamicResource LunaCheckRadioBoxSize}"
+                  VerticalAlignment="Center"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="1">
+            <Panel>
+              <Path Name="CheckGlyph"
+                    Margin="2"
+                    Stretch="Uniform"
+                    Stroke="{DynamicResource LunaAccentGreenBrush}"
+                    StrokeThickness="1.6"
+                    StrokeLineCap="Square"
+                    StrokeJoin="Miter"
+                    Data="{DynamicResource LunaCheckMarkGeometry}"
+                    IsVisible="False" />
+              <Rectangle Name="IndeterminateGlyph"
+                         Width="7" Height="7"
+                         Fill="{DynamicResource LunaDisabledTextBrush}"
+                         IsVisible="False" />
+            </Panel>
+          </Border>
+          <ContentPresenter Name="PART_ContentPresenter"
+                             Grid.Column="1"
+                             Margin="6,0,0,0"
+                             VerticalAlignment="Center"
+                             Content="{TemplateBinding Content}"
+                             ContentTemplate="{TemplateBinding ContentTemplate}"
+                             RecognizesAccessKey="True" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:checked /template/ Path#CheckGlyph">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:indeterminate /template/ Rectangle#IndeterminateGlyph">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <!-- box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c (only while not pressed/disabled) -->
+    <Style Selector="^:pointerover:not(:pressed):not(:disabled) /template/ Border#PART_Border">
+      <Setter Property="BoxShadow" Value="{DynamicResource LunaCheckRadioHoverGlow}" />
+    </Style>
+
+    <!-- background: linear-gradient(135deg, #b0b0a7 0%, #e3e1d2 100%) -->
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource LunaCheckRadioPressedGradientBrush}" />
+    </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource LunaDisabledTextBrush}" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LunaCheckRadioBorderDisabledBrush}" />
+      </Style>
+      <Style Selector="^ /template/ Path#CheckGlyph">
+        <Setter Property="Stroke" Value="{DynamicResource LunaCheckRadioDisabledGlyphBrush}" />
+      </Style>
+      <Style Selector="^ /template/ Rectangle#IndeterminateGlyph">
+        <Setter Property="Fill" Value="{DynamicResource LunaCheckRadioDisabledGlyphBrush}" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

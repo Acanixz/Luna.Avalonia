@@ -1,0 +1,117 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaCaptionButtonBackgroundBrush}">
+      <CaptionButtons Height="21" />
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Ported from XP.css themes/XP/_window.scss .title-bar-controls: 21x21 buttons with a white
+       ring around a colored fill (icon/minimize.svg etc. bake a white border into the graphic
+       itself); the original swaps the whole icon bitmap per state, we instead tint the button
+       (see icon-porting decision). -->
+  <ControlTheme x:Key="LunaCaptionButtonTheme" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Width" Value="{DynamicResource LunaCaptionButtonSize}" />
+    <Setter Property="Height" Value="{DynamicResource LunaCaptionButtonSize}" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="2,0,0,0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="BorderBrush" Value="White" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="Background" Value="{DynamicResource LunaCaptionButtonBackgroundBrush}" />
+    <Setter Property="Focusable" Value="False" />
+
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="Background" Value="#1f7dff" />
+      <Setter Property="BoxShadow" Value="none" />
+    </Style>
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="#003bb3" />
+      <Setter Property="BoxShadow" Value="none" />
+    </Style>
+  </ControlTheme>
+
+  <!-- icon/close.svg uses a red gradient fill instead of the shared blue. -->
+  <ControlTheme x:Key="LunaCaptionCloseButtonTheme" TargetType="Button" BasedOn="{StaticResource LunaCaptionButtonTheme}">
+    <Setter Property="Background" Value="{DynamicResource LunaCaptionCloseBackgroundBrush}" />
+    <Style Selector="^:pointerover /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource LunaCaptionCloseHoverBrush}" />
+      <Setter Property="BoxShadow" Value="none" />
+    </Style>
+    <Style Selector="^:pressed /template/ Border#PART_Border">
+      <Setter Property="Background" Value="{DynamicResource LunaCaptionClosePressedBrush}" />
+      <Setter Property="BoxShadow" Value="none" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type CaptionButtons}" TargetType="CaptionButtons">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Stretch"
+                    Margin="0,0,3,0"
+                    Classes.inactive="{Binding !$parent[Window].IsActive}">
+          <Button Name="PART_FullScreenButton"
+                  IsVisible="False"
+                  Theme="{StaticResource LunaCaptionButtonTheme}">
+            <Path Name="FullScreenButtonPath"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Fill="White"
+                  Data="{DynamicResource LunaMaximizeGeometry}" />
+          </Button>
+          <Button Name="PART_MinimizeButton"
+                  Theme="{StaticResource LunaCaptionButtonTheme}"
+                  AutomationProperties.Name="Minimize">
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,3,0" Fill="White" Data="{DynamicResource LunaMinimizeGeometry}" />
+          </Button>
+          <Button Name="PART_RestoreButton"
+                  Theme="{StaticResource LunaCaptionButtonTheme}"
+                  AutomationProperties.Name="Maximize">
+            <Path Name="RestoreButtonPath" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Data="{DynamicResource LunaMaximizeGeometry}" />
+          </Button>
+          <Button Name="PART_CloseButton"
+                  Theme="{StaticResource LunaCaptionCloseButtonTheme}"
+                  AutomationProperties.Name="Close">
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Data="{DynamicResource LunaCloseGeometry}" />
+          </Button>
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:maximized /template/ Path#RestoreButtonPath">
+      <Setter Property="Data" Value="{DynamicResource LunaRestoreGeometry}" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ Path#FullScreenButtonPath">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ Button#PART_RestoreButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ Button#PART_MinimizeButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:dialog /template/ Button#PART_MinimizeButton">
+      <Setter Property="IsEnabled" Value="False" />
+    </Style>
+    <Style Selector="^:dialog:cantresize">
+      <Style Selector="^ /template/ Button#PART_MinimizeButton">
+        <Setter Property="IsVisible" Value="False" />
+      </Style>
+      <Style Selector="^ /template/ Button#PART_RestoreButton">
+        <Setter Property="IsVisible" Value="False" />
+      </Style>
+    </Style>
+
+    <!-- Not defined by XP.css (see the same gap on the title bar gradient) - desaturates every
+         caption button, close included, to match the approximated inactive title bar. -->
+    <Style Selector="^ /template/ StackPanel.inactive Button">
+      <Setter Property="Background" Value="{DynamicResource LunaCaptionButtonInactiveBackgroundBrush}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

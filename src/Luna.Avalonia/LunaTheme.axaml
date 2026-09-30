@@ -1,0 +1,17 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Luna.Avalonia.LunaTheme">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="/Styles/InvariantResources.axaml" />
+        <MergeResourceInclude Source="/Colors/Colors.axaml" />
+        <MergeResourceInclude Source="/Icons/WindowIcons.axaml" />
+        <MergeResourceInclude Source="/Icons/FormIcons.axaml" />
+        <MergeResourceInclude Source="/Brushes/StripeBrushes.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+
+  <StyleInclude Source="/Styles/Controls.axaml" />
+</Styles>

@@ -1,0 +1,58 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- No source in XP.css - styled to match the established Luna language: the same border/
+       background as TextBox/TreeView, and the same selection blue used everywhere else. -->
+  <ControlTheme x:Key="{x:Type ListBox}" TargetType="ListBox">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+          </ScrollViewer>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.6" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+    <Setter Property="Padding" Value="4,3" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                           HorizontalAlignment="Stretch"
+                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                           Padding="{TemplateBinding Padding}"
+                           Background="{TemplateBinding Background}"
+                           Content="{TemplateBinding Content}"
+                           ContentTemplate="{TemplateBinding ContentTemplate}" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource LunaSelectionBrush}" />
+      <Setter Property="TextElement.Foreground" Value="White" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

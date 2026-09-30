@@ -1,0 +1,126 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <!-- Ported from XP.css themes/XP/_global.scss ::-webkit-scrollbar rules. The original's tiled
+       SVG track/thumb-grip textures and per-arrow icon variants are simplified to flat colors
+       and a single vector chevron (see icon-porting decision). Structure adapted from Avalonia's
+       own Simple theme (RepeatButton/Track/Thumb wiring). -->
+  <ControlTheme x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
+    <Setter Property="Cursor" Value="Arrow" />
+
+    <Style Selector="^:horizontal">
+      <Setter Property="Height" Value="{DynamicResource LunaScrollBarThickness}" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{DynamicResource LunaScrollTrackBrush}">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+              <RepeatButton Name="PART_LineUpButton" Grid.Column="0"
+                            MinWidth="{DynamicResource LunaScrollBarThickness}"
+                            Classes="luna-arrow" Focusable="False">
+                <Path Data="M 4,0 L 4,8 L 0,4 Z" />
+              </RepeatButton>
+              <Track Grid.Column="1"
+                     Maximum="{TemplateBinding Maximum}"
+                     Minimum="{TemplateBinding Minimum}"
+                     Orientation="{TemplateBinding Orientation}"
+                     ViewportSize="{TemplateBinding ViewportSize}"
+                     Value="{TemplateBinding Value, Mode=TwoWay}">
+                <Track.DecreaseButton>
+                  <RepeatButton Name="PART_PageUpButton" Classes="luna-track" Focusable="False" />
+                </Track.DecreaseButton>
+                <Track.IncreaseButton>
+                  <RepeatButton Name="PART_PageDownButton" Classes="luna-track" Focusable="False" />
+                </Track.IncreaseButton>
+                <Thumb Name="thumb" />
+              </Track>
+              <RepeatButton Name="PART_LineDownButton" Grid.Column="2"
+                            MinWidth="{DynamicResource LunaScrollBarThickness}"
+                            Classes="luna-arrow" Focusable="False">
+                <Path Data="M 0,0 L 4,4 L 0,8 Z" />
+              </RepeatButton>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^:vertical">
+      <Setter Property="Width" Value="{DynamicResource LunaScrollBarThickness}" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{DynamicResource LunaScrollTrackBrush}">
+            <Grid RowDefinitions="Auto,*,Auto">
+              <RepeatButton Name="PART_LineUpButton" Grid.Row="0"
+                            MinHeight="{DynamicResource LunaScrollBarThickness}"
+                            Classes="luna-arrow" Focusable="False">
+                <Path Data="M 0,4 L 8,4 L 4,0 Z" />
+              </RepeatButton>
+              <Track Grid.Row="1"
+                     IsDirectionReversed="True"
+                     Maximum="{TemplateBinding Maximum}"
+                     Minimum="{TemplateBinding Minimum}"
+                     Orientation="{TemplateBinding Orientation}"
+                     ViewportSize="{TemplateBinding ViewportSize}"
+                     Value="{TemplateBinding Value, Mode=TwoWay}">
+                <Track.DecreaseButton>
+                  <RepeatButton Name="PART_PageUpButton" Classes="luna-track" Focusable="False" />
+                </Track.DecreaseButton>
+                <Track.IncreaseButton>
+                  <RepeatButton Name="PART_PageDownButton" Classes="luna-track" Focusable="False" />
+                </Track.IncreaseButton>
+                <Thumb Name="thumb" />
+              </Track>
+              <RepeatButton Name="PART_LineDownButton" Grid.Row="2"
+                            MinHeight="{DynamicResource LunaScrollBarThickness}"
+                            Classes="luna-arrow" Focusable="False">
+                <Path Data="M 0,0 L 4,4 L 8,0 Z" />
+              </RepeatButton>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <!-- Thumb: background-color #c8d6fb, 1px solid white border, 2px radius -->
+    <Style Selector="^ /template/ Thumb#thumb">
+      <Setter Property="Background" Value="{DynamicResource LunaScrollThumbBrush}" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="White"
+                  BorderThickness="1"
+                  CornerRadius="{DynamicResource LunaScrollThumbCornerRadius}" />
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="^ /template/ Thumb#thumb:pointerover">
+      <Setter Property="Background" Value="{DynamicResource LunaScrollThumbHoverBrush}" />
+    </Style>
+    <Style Selector="^:horizontal /template/ Thumb#thumb">
+      <Setter Property="MinWidth" Value="{DynamicResource LunaScrollBarThickness}" />
+      <Setter Property="Height" Value="{DynamicResource LunaScrollBarThumbThickness}" />
+    </Style>
+    <Style Selector="^:vertical /template/ Thumb#thumb">
+      <Setter Property="MinHeight" Value="{DynamicResource LunaScrollBarThickness}" />
+      <Setter Property="Width" Value="{DynamicResource LunaScrollBarThumbThickness}" />
+    </Style>
+
+    <Style Selector="^ /template/ RepeatButton.luna-arrow">
+      <Setter Property="Background" Value="White" />
+      <Setter Property="Padding" Value="4" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="^ /template/ RepeatButton.luna-track">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="^ /template/ RepeatButton > Path">
+      <Setter Property="Fill" Value="{DynamicResource LunaScrollArrowBrush}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>
