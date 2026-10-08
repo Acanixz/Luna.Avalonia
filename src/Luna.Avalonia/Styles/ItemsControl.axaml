@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}">
+      <ItemsControl>
+        <TextBlock Text="One" />
+        <TextBlock Text="Two" />
+        <TextBlock Text="Three" />
+      </ItemsControl>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- The base ItemsControl has no chrome of its own in XP.css either (ListBox - Styles/ListBox.axaml
+       - is the themed, bordered variant); this just gives it a template at all, structurally
+       identical to Avalonia's own SimpleTheme. Without this, PART_ItemsPresenter never exists and a
+       bare <ItemsControl> (as used for the Credits contributor list and the Help FAQ list) renders
+       nothing, at zero size, no matter what its ItemsSource contains. -->
+  <ControlTheme x:Key="{x:Type ItemsControl}" TargetType="ItemsControl">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                           ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

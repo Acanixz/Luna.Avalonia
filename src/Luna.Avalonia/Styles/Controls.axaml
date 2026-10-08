@@ -19,7 +19,10 @@
         <MergeResourceInclude Source="/Styles/TreeViewItem.axaml" />
         <MergeResourceInclude Source="/Styles/GroupBox.axaml" />
         <MergeResourceInclude Source="/Styles/StatusBar.axaml" />
+        <MergeResourceInclude Source="/Styles/ItemsControl.axaml" />
         <MergeResourceInclude Source="/Styles/ListBox.axaml" />
+        <MergeResourceInclude Source="/Styles/ScrollViewer.axaml" />
+        <MergeResourceInclude Source="/Styles/Expander.axaml" />
         <MergeResourceInclude Source="/Styles/ToolTip.axaml" />
         <MergeResourceInclude Source="/Styles/MenuItem.axaml" />
         <MergeResourceInclude Source="/Styles/Menu.axaml" />

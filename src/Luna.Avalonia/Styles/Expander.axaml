@@ -1,0 +1,118 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}" Width="320">
+      <StackPanel Spacing="6">
+        <Expander Header="Collapsed">
+          <TextBlock Text="Hidden content" />
+        </Expander>
+        <Expander Header="Expanded" IsExpanded="True">
+          <TextBlock Text="Visible content" TextWrapping="Wrap" />
+        </Expander>
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Not part of XP.css (classic Windows chrome has no accordion-style control) - this design
+       instead matches the Figma Help mockup (.claude/Figma/Telas/2A.png, 2B.png in the Reflict
+       repo): a left-white-to-right-blue gradient header row, bold blue header text, and a small
+       circular chevron badge on the right instead of a bare triangle glyph. Colors live in
+       Colors/Blue.axaml (Luna*Expander* keys) rather than inline here, matching every other themed
+       control. Only ExpandDirection="Down" (the default, and the only direction this theme's
+       consumers use) is themed; other directions fall back to Avalonia's unstyled default (no
+       template) until there's an actual need for them. -->
+  <ControlTheme x:Key="SimpleExpanderToggleButtonDownTheme" TargetType="ToggleButton">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Background" Value="{DynamicResource LunaExpanderHeaderGradientBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaExpanderAccentBrush}" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Padding" Value="10,7" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="HeaderBackground" Background="{TemplateBinding Background}">
+          <Grid ColumnDefinitions="*,Auto">
+            <ContentPresenter Name="PART_ContentPresenter"
+                               Grid.Column="0"
+                               Padding="{TemplateBinding Padding}"
+                               VerticalAlignment="Center"
+                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Background="Transparent"
+                               Content="{TemplateBinding Content}"
+                               ContentTemplate="{Binding $parent[Expander].HeaderTemplate}" />
+            <Border Name="ChevronBadge"
+                    Grid.Column="1"
+                    Width="17" Height="17"
+                    Margin="8,0,10,0"
+                    VerticalAlignment="Center"
+                    CornerRadius="9"
+                    Background="{DynamicResource LunaExpanderAccentBrush}">
+              <Path Name="ExpandGlyph"
+                    Width="7" Height="7"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform"
+                    Fill="White"
+                    Data="M 0,0 L 8,0 L 4,8 Z"
+                    RenderTransformOrigin="50%,50%" />
+            </Border>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover /template/ Border#HeaderBackground">
+      <Setter Property="Background" Value="{DynamicResource LunaExpanderHeaderHoverGradientBrush}" />
+    </Style>
+    <Style Selector="^:checked /template/ Path#ExpandGlyph">
+      <Setter Property="RenderTransform" Value="rotate(180deg)" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type Expander}" TargetType="Expander">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="CornerRadius" Value="{DynamicResource LunaGroupBoxCornerRadius}" />
+    <Setter Property="FontFamily" Value="{DynamicResource LunaSansSerifFontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource LunaFontSizeNormal}" />
+    <Setter Property="Foreground" Value="{DynamicResource LunaWindowTextBrush}" />
+    <Setter Property="ContentTransition">
+      <Setter.Value>
+        <CrossFade Duration="00:00:00.1" />
+      </Setter.Value>
+    </Setter>
+
+    <Style Selector="^[ExpandDirection=Down]">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  ClipToBounds="True">
+            <Grid RowDefinitions="Auto,Auto">
+              <ToggleButton Name="PART_toggle"
+                            Grid.Row="0"
+                            HorizontalAlignment="Stretch"
+                            Content="{TemplateBinding Header}"
+                            IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
+                            Theme="{StaticResource SimpleExpanderToggleButtonDownTheme}" />
+              <Border Name="PART_ContentBorder"
+                      Grid.Row="1"
+                      Background="{DynamicResource LunaExpanderPanelBrush}"
+                      IsVisible="{TemplateBinding IsExpanded}">
+                <ContentPresenter Name="PART_ContentPresenter"
+                                   Padding="{TemplateBinding Padding}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Content="{TemplateBinding Content}"
+                                   ContentTemplate="{TemplateBinding ContentTemplate}" />
+              </Border>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

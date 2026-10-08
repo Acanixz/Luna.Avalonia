@@ -1,9 +1,26 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <!-- Fonts -->
-  <FontFamily x:Key="LunaSansSerifFontFamily">avares://Luna.Avalonia/Assets/Fonts/MS Sans Serif.ttf#MS Sans Serif, Tahoma, Segoe UI, $Default</FontFamily>
-  <FontFamily x:Key="LunaSansSerifBoldFontFamily">avares://Luna.Avalonia/Assets/Fonts/MS Sans Serif Bold.ttf#MS Sans Serif Bold, Tahoma, Segoe UI, $Default</FontFamily>
+  <!-- Fonts
+       Tahoma first: it's the real Windows XP Luna UI font, ships standard with every Windows 10/11
+       install, and is referenced here purely BY NAME (never embedded/redistributed as a file) - the
+       OS supplies the glyphs at runtime, same as any web page naming "Arial" without shipping it, so
+       this carries no font-licensing exposure. It's also a practical necessity, not just an
+       authenticity choice: the embedded "MS Sans Serif" FontStruct export (kept as the fallback
+       below) is a bare 95-glyph ASCII-only pixel font - no em/en dash, no ellipsis, no accented
+       characters at all - so anything outside plain ASCII (an em dash mid-sentence, a name like
+       "Hérick") was already silently falling back mid-run to whatever came next in this list,
+       producing a jarring crisp-pixel-font-to-smooth-fallback-font seam exactly where the fallback
+       kicked in. Both weight faces of the embedded fallback are vendored under the same internal
+       family name ("Luna MS Sans Serif" - deliberately renamed away from the literal "MS Sans Serif"
+       the FontStruct exports shipped with, which collides with the ancient Windows GDI bitmap system
+       font of that exact name and made Skia's font matching resolve unpredictably between the two).
+       Referencing the *folder* (no filename, just `#FamilyName`) makes Avalonia auto-discover every
+       face inside it that declares that family name, so FontWeight="Bold" resolves to the real
+       hand-drawn bold glyphs (MS Sans Serif Bold.ttf, OS/2 usWeightClass=700) instead of a
+       synthetic/faux-bold stretch of the regular face's pixel-block outlines, on the rare path where
+       Tahoma itself is unavailable (e.g. a non-Windows Avalonia target). -->
+  <FontFamily x:Key="LunaSansSerifFontFamily">Tahoma, avares://Luna.Avalonia/Assets/Fonts#Luna MS Sans Serif, Segoe UI, $Default</FontFamily>
 
   <!-- Trebuchet MS is a proprietary system font (title bar in the original Luna theme) and cannot be embedded;
        fall back to common system sans fonts when it isn't installed. -->

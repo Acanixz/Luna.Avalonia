@@ -1,0 +1,57 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+
+  <Design.PreviewWith>
+    <Border Padding="20" Background="{DynamicResource LunaSurfaceBrush}" Width="200" Height="150">
+      <ScrollViewer>
+        <StackPanel Spacing="4">
+          <TextBlock Text="Line one" />
+          <TextBlock Text="Line two" />
+          <TextBlock Text="Line three" />
+          <TextBlock Text="Line four" />
+          <TextBlock Text="Line five" />
+          <TextBlock Text="Line six" />
+          <TextBlock Text="Line seven" />
+          <TextBlock Text="Line eight" />
+        </StackPanel>
+      </ScrollViewer>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Structure mirrors Avalonia's own SimpleTheme ScrollViewer (the PART names below -
+       PART_ContentPresenter / PART_HorizontalScrollBar / PART_VerticalScrollBar - are wired up by
+       ScrollViewer's own code-behind, not by bindings in this template), re-skinned with the Luna
+       ScrollBar (Styles/ScrollBar.axaml) and a corner-panel fill matching its track color. -->
+  <ControlTheme x:Key="{x:Type ScrollViewer}" TargetType="ScrollViewer">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+          <ScrollContentPresenter Name="PART_ContentPresenter"
+                                   Padding="{TemplateBinding Padding}"
+                                   HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                   VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                   HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                   VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                   Background="{TemplateBinding Background}"
+                                   ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+            <ScrollContentPresenter.GestureRecognizers>
+              <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                        CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                        IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+            </ScrollContentPresenter.GestureRecognizers>
+          </ScrollContentPresenter>
+          <ScrollBar Name="PART_HorizontalScrollBar"
+                     Grid.Row="1"
+                     Orientation="Horizontal" />
+          <ScrollBar Name="PART_VerticalScrollBar"
+                     Grid.Column="1"
+                     Orientation="Vertical" />
+          <Panel Grid.Row="1" Grid.Column="1" Background="{DynamicResource LunaScrollTrackBrush}" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+</ResourceDictionary>

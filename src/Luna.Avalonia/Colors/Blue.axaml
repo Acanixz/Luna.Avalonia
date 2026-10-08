@@ -226,4 +226,24 @@
   <SolidColorBrush x:Key="LunaStatusBarDividerDarkBrush" Color="#d0cebf" Opacity="0.75" />
   <SolidColorBrush x:Key="LunaStatusBarDividerLightBrush" Color="White" Opacity="0.75" />
 
+  <!-- Expander - not part of XP.css (classic Windows has no accordion control); colors sampled
+       directly from the Figma Help mockup (.claude/Figma/Telas/2A.png, 2B.png) via pixel-probing
+       with Pillow: header row is a white-to-blue horizontal gradient, #FFFFFF at the left edge to
+       about #C3D2F7 at the right, same blue for the header text/chevron badge (#215DC6), and the
+       expanded content panel sits on a pale lavender (#EEF2FC) rather than plain white. -->
+  <LinearGradientBrush x:Key="LunaExpanderHeaderGradientBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+    <GradientStop Offset="0" Color="#FFFFFF" />
+    <GradientStop Offset="1" Color="#C3D2F7" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="LunaExpanderHeaderHoverGradientBrush" StartPoint="0%,0%" EndPoint="100%,0%">
+    <GradientStop Offset="0" Color="#F2F6FE" />
+    <GradientStop Offset="1" Color="#A6BBF4" />
+  </LinearGradientBrush>
+
+  <Color x:Key="LunaExpanderAccentColor">#215DC6</Color>
+  <SolidColorBrush x:Key="LunaExpanderAccentBrush" Color="{StaticResource LunaExpanderAccentColor}" />
+
+  <Color x:Key="LunaExpanderPanelColor">#EEF2FC</Color>
+  <SolidColorBrush x:Key="LunaExpanderPanelBrush" Color="{StaticResource LunaExpanderPanelColor}" />
+
 </ResourceDictionary>
