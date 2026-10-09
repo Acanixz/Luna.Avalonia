@@ -52,7 +52,7 @@
                    IsLightDismissEnabled="False"
                    IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
                    Placement="RightEdgeAlignedTop">
-              <Border Background="White" BorderBrush="{DynamicResource LunaInputBorderBrush}" BorderThickness="1">
+              <Border Background="{DynamicResource LunaInputSurfaceBrush}" BorderBrush="{DynamicResource LunaInputBorderBrush}" BorderThickness="1">
                 <ScrollViewer>
                   <ItemsPresenter Name="PART_ItemsPresenter"
                                   Margin="2"

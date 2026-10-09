@@ -16,5 +16,16 @@
         <ResourceInclude Source="/Colors/Blue.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
+    <!-- Keyed to the built-in ThemeVariant.Dark (bare "Dark" string, same convention Avalonia's
+         own Fluent/Simple themes use) rather than a custom variant: this is what lets an app that
+         merely follows the OS - RequestedThemeVariant left at ThemeVariant.Default - resolve
+         straight to this dictionary the moment the system is in dark mode, with no Luna-specific
+         opt-in required. Apps that want Dark regardless of the OS can request it explicitly via
+         LunaTheme.Dark (== ThemeVariant.Dark), same pattern as LunaTheme.Blue above. -->
+    <ResourceDictionary x:Key="Dark">
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Colors/Dark.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
   </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

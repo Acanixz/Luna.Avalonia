@@ -27,11 +27,11 @@
     <Setter Property="Focusable" Value="False" />
 
     <Style Selector="^:pointerover /template/ Border#PART_Border">
-      <Setter Property="Background" Value="#1f7dff" />
+      <Setter Property="Background" Value="{DynamicResource LunaCaptionButtonHoverBrush}" />
       <Setter Property="BoxShadow" Value="none" />
     </Style>
     <Style Selector="^:pressed /template/ Border#PART_Border">
-      <Setter Property="Background" Value="#003bb3" />
+      <Setter Property="Background" Value="{DynamicResource LunaCaptionButtonPressedBrush}" />
       <Setter Property="BoxShadow" Value="none" />
     </Style>
   </ControlTheme>

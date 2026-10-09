@@ -16,7 +16,7 @@
        themes use (see Avalonia.Themes.Simple's ProgressBar.xaml) - just with Luna's green
        striped fill instead of a flat accent color. -->
   <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaProgressTrackBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="CornerRadius" Value="{DynamicResource LunaProgressBarCornerRadius}" />

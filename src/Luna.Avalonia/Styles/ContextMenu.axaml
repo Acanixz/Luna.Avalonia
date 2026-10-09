@@ -4,7 +4,7 @@
 
   <!-- No source in XP.css - shares the same popup chrome as MenuItem/Menu submenus. -->
   <ControlTheme x:Key="{x:Type ContextMenu}" TargetType="ContextMenu">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="2" />

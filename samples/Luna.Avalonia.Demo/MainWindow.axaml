@@ -25,6 +25,12 @@
         <MenuItem Header="Opção A" ToggleType="Radio" IsChecked="True" />
         <MenuItem Header="Opção B" ToggleType="Radio" />
       </MenuItem>
+      <MenuItem Header="_Tema">
+        <MenuItem Header="Azul (Luna)" Click="OnThemeBlueClick" />
+        <MenuItem Header="Escuro" Click="OnThemeDarkClick" />
+        <Separator />
+        <MenuItem Header="Seguir o sistema" Click="OnThemeSystemClick" />
+      </MenuItem>
       <MenuItem Header="Aj_uda">
         <MenuItem Header="_Sobre..." />
       </MenuItem>

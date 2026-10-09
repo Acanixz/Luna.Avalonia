@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Styling;
 #if DEBUG
 using Avalonia.Diagnostics;
 #endif
@@ -33,4 +34,13 @@ public partial class MainWindow : Window
         };
         window.Show();
     }
+
+    private void OnThemeBlueClick(object? sender, RoutedEventArgs e) =>
+        Application.Current!.RequestedThemeVariant = LunaTheme.Blue;
+
+    private void OnThemeDarkClick(object? sender, RoutedEventArgs e) =>
+        Application.Current!.RequestedThemeVariant = LunaTheme.Dark;
+
+    private void OnThemeSystemClick(object? sender, RoutedEventArgs e) =>
+        Application.Current!.RequestedThemeVariant = ThemeVariant.Default;
 }

@@ -5,7 +5,7 @@
   <!-- No source in XP.css - styled to match the established Luna language: the same border/
        background as TextBox/TreeView, and the same selection blue used everywhere else. -->
   <ControlTheme x:Key="{x:Type ListBox}" TargetType="ListBox">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="2" />

@@ -56,7 +56,7 @@
          no top margin so it fills the full (fixed) slot height instead of the usual 3px inset. -->
     <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Margin" Value="0" />
-      <Setter Property="Background" Value="#fcfcfe" />
+      <Setter Property="Background" Value="{DynamicResource LunaTabSelectedBrush}" />
       <Setter Property="BorderBrush" Value="{DynamicResource LunaTabAccentBrush}" />
       <Setter Property="BorderThickness" Value="2,2,2,0" />
     </Style>

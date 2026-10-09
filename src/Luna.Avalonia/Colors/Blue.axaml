@@ -11,6 +11,13 @@
   <Color x:Key="LunaDisabledTextColor">#808080</Color>
   <SolidColorBrush x:Key="LunaDisabledTextBrush" Color="{StaticResource LunaDisabledTextColor}" />
 
+  <!-- Background for "document" surfaces - TextBox/ComboBox/ListBox/TreeView/the GroupBox content
+       pane - as opposed to LunaSurfaceColor's dialog chrome. Always white in classic Windows
+       regardless of the dialog's own background; kept as its own key (rather than every style
+       hardcoding "White") so a dark variant can give it a different answer. -->
+  <Color x:Key="LunaInputSurfaceColor">#ffffff</Color>
+  <SolidColorBrush x:Key="LunaInputSurfaceBrush" Color="{StaticResource LunaInputSurfaceColor}" />
+
   <!-- Button (themes/XP/_buttons.scss) -->
   <Color x:Key="LunaButtonBorderColor">#003c74</Color>
   <SolidColorBrush x:Key="LunaButtonBorderBrush" Color="{StaticResource LunaButtonBorderColor}" />
@@ -116,6 +123,14 @@
   <Color x:Key="LunaCaptionButtonInactiveBackgroundColor">#7d8cc4</Color>
   <SolidColorBrush x:Key="LunaCaptionButtonInactiveBackgroundBrush" Color="{StaticResource LunaCaptionButtonInactiveBackgroundColor}" />
 
+  <!-- CaptionButtons.axaml's own hardcoded pointerover/pressed values for min/max/restore,
+       lifted out to their own keys so a non-blue variant (e.g. Dark's graphite) isn't stuck
+       flashing this blue on hover. -->
+  <Color x:Key="LunaCaptionButtonHoverColor">#1f7dff</Color>
+  <SolidColorBrush x:Key="LunaCaptionButtonHoverBrush" Color="{StaticResource LunaCaptionButtonHoverColor}" />
+  <Color x:Key="LunaCaptionButtonPressedColor">#003bb3</Color>
+  <SolidColorBrush x:Key="LunaCaptionButtonPressedBrush" Color="{StaticResource LunaCaptionButtonPressedColor}" />
+
   <!-- Close button uses its own red icon graphic in the original (icon/close.svg), unlike the
        shared blue of min/max/restore. Same diagonal-sample technique as the blue button (corners
        #EFA390 top-left, #C22A00 bottom-right, middle stop averaging #D04623/#CC3813). -->
@@ -145,6 +160,13 @@
     <GradientStop Offset="0" Color="#fcfcfe" />
     <GradientStop Offset="1" Color="#f4f3ee" />
   </LinearGradientBrush>
+
+  <!-- Selected TabItem's own background (TabItem.axaml) - same tone as the panel's top edge
+       (LunaTabPanelGradientBrush's first stop) since the selected tab visually merges into the
+       panel below it. Kept as its own key rather than hardcoded so a dark variant can match its
+       own panel tone instead of staying stuck on a light one. -->
+  <Color x:Key="LunaTabSelectedColor">#fcfcfe</Color>
+  <SolidColorBrush x:Key="LunaTabSelectedBrush" Color="{StaticResource LunaTabSelectedColor}" />
 
   <Color x:Key="LunaTabAccentColor">#e68b2c</Color>
   <SolidColorBrush x:Key="LunaTabAccentBrush" Color="{StaticResource LunaTabAccentColor}" />

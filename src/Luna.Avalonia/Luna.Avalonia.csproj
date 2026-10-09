@@ -4,7 +4,7 @@
     <PackageId>Luna.Avalonia</PackageId>
     <Description>A Windows XP "Luna" visual theme for Avalonia UI, ported from XP.css.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.1.4</Version>
+    <Version>0.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

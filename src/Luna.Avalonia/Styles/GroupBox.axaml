@@ -25,7 +25,7 @@
       <ControlTemplate>
         <Grid>
           <Border Margin="0,7,0,0"
-                  Background="White"
+                  Background="{DynamicResource LunaInputSurfaceBrush}"
                   BorderBrush="{DynamicResource LunaGroupBoxBorderBrush}"
                   BorderThickness="1"
                   CornerRadius="{DynamicResource LunaGroupBoxCornerRadius}">

@@ -14,7 +14,7 @@
 
   <!-- Ported from XP.css themes/XP/_forms.scss (height/selection) + gui/_forms.scss (border/padding). -->
   <ControlTheme x:Key="{x:Type TextBox}" TargetType="TextBox">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="4,3" />

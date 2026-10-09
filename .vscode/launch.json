@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Luna.Avalonia.Demo",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/samples/Luna.Avalonia.Demo/bin/Debug/net8.0/Luna.Avalonia.Demo.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/samples/Luna.Avalonia.Demo",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}

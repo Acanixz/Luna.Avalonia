@@ -69,7 +69,7 @@
     <Style Selector="^:disabled">
       <Setter Property="Foreground" Value="{DynamicResource LunaDisabledTextBrush}" />
       <Style Selector="^ /template/ Border#PART_Border">
-        <Setter Property="Background" Value="White" />
+        <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource LunaCheckRadioBorderDisabledBrush}" />
       </Style>
       <Style Selector="^ /template/ Ellipse#RadioDot">

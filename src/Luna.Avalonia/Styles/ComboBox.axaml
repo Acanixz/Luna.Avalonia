@@ -15,7 +15,7 @@
        original's elaborate round blue dropdown-arrow graphic is simplified to a flat chevron
        (see icon-porting decision). Template structure adapted from Avalonia's own Simple theme. -->
   <ControlTheme x:Key="{x:Type ComboBox}" TargetType="ComboBox">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="4,0" />
@@ -94,7 +94,7 @@
                    IsOpen="{TemplateBinding IsDropDownOpen, Mode=TwoWay}"
                    PlacementTarget="{TemplateBinding}"
                    InheritsTransform="True">
-              <Border Background="White"
+              <Border Background="{DynamicResource LunaInputSurfaceBrush}"
                       BorderBrush="{DynamicResource LunaInputBorderBrush}"
                       BorderThickness="1">
                 <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"

@@ -5,7 +5,7 @@
   <!-- Ported from XP.css themes/XP/_treeview.scss (ul.tree-view border/padding); structure
        adapted from Avalonia's own Simple theme. -->
   <ControlTheme x:Key="{x:Type TreeView}" TargetType="TreeView">
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="{DynamicResource LunaInputSurfaceBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource LunaInputBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Padding" Value="5,2" />
