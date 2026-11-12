@@ -9,9 +9,33 @@ and "MS Sans Serif Bold" (https://fontstruct.com/fontstructions/show/1384862), b
 Created with Fontstruct, the free online font-building tool (http://fontstruct.com).
 Fontstruct is copyright (c) 2017 Rob Meek.
 
-These files were originally redistributed via the XP.css project
-(https://github.com/botoxparty/XP.css), under `gui/fonts/src/`, and are vendored
-here unmodified for use as the Luna.Avalonia theme's UI font.
+These files were obtained from the XP.css project
+(https://github.com/botoxparty/XP.css), under `gui/fonts/src/`, and are used as the
+Luna.Avalonia theme's fallback UI font.
+
+Modifications
+-------------
+
+The files in this folder are MODIFIED versions of the originals. Only font metadata
+was changed; the glyph outlines (the drawn letters) are identical to lou's originals:
+
+- Both files: the family name was changed from "MS Sans Serif" / "MS Sans Serif
+  Bold" to "Luna MS Sans Serif" (name table; the full and PostScript names follow
+  it), so the font no longer collides with the Windows system bitmap font of the
+  same name.
+- MS Sans Serif Bold.ttf: additionally marked as the Bold face of that family
+  (OS/2 usWeightClass 400 -> 700 and bold flags in OS/2 fsSelection and head
+  macStyle), and its character map (cmap table) was rewritten by the editing tool.
+
+These modified files remain licensed under CC BY-SA 3.0, as their embedded license
+fields still state.
+
+Original notices
+----------------
+
+The license.txt and readme.txt that FontStruct shipped with each font are kept here
+unmodified, as "MS Sans Serif - license.txt", "MS Sans Serif - readme.txt",
+"MS Sans Serif Bold - license.txt" and "MS Sans Serif Bold - readme.txt".
 
 If you redistribute these font files, you must comply with the CC BY-SA 3.0 license
-terms above and keep this attribution file alongside them.
+terms above and keep this attribution file and the original notices alongside them.

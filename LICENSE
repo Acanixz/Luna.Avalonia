@@ -22,6 +22,68 @@ SOFTWARE.
 
 ---
 
-This package also vendors the "MS Sans Serif" and "MS Sans Serif Bold" fonts
+THIRD-PARTY NOTICES
+
+XP.css
+
+Luna.Avalonia is a port of XP.css (https://github.com/botoxparty/XP.css): the
+control styles, colors, gradients, sizing and glyph shapes under
+src/Luna.Avalonia/ were translated from its SCSS sources to Avalonia XAML.
+XP.css is distributed under the following license:
+
+  Copyright 2020 Adam Hammad, Jordan Scales
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+
+Classic.Avalonia
+
+The GroupBox, StatusBar and StatusBarItem controls under
+src/Luna.Avalonia/Controls/ were ported from Classic.Avalonia
+(https://github.com/BAndysc/Classic.Avalonia). Classic.Avalonia is distributed
+under the following license:
+
+  MIT License
+
+  Copyright (c) 2024 BAndysc
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the “Software”), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+
+MS Sans Serif fonts
+
+This package also vendors modified versions of the "MS Sans Serif" and
+"MS Sans Serif Bold" fonts by "lou", built with FontStruct
 (src/Luna.Avalonia/Assets/Fonts/), which are licensed separately under
-Creative Commons Attribution-ShareAlike 3.0 - see Assets/Fonts/ATTRIBUTION.txt.
+Creative Commons Attribution-ShareAlike 3.0 - see Assets/Fonts/ATTRIBUTION.txt
+for the attribution, the list of modifications and the original notices.
