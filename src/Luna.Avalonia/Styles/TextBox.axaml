@@ -39,12 +39,16 @@
             <ContentPresenter Name="PART_InnerLeftContent"
                                Grid.Column="0"
                                Content="{TemplateBinding InnerLeftContent}" />
+            <!-- Padding goes on the content as a Margin, not on the ScrollViewer: Avalonia 11's
+                 ScrollContentPresenter measures its child at the full width but arranges it inside
+                 the padding, so wrapped text was measured with fewer lines than it ends up with -
+                 the box came out too short and the text was clipped top and bottom (multi-line
+                 read-only TextBoxes, e.g. MsBox dialogs). -->
             <ScrollViewer Name="PART_ScrollViewer"
                           Grid.Column="1"
-                          Padding="{TemplateBinding Padding}"
                           HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                           VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
-              <Panel>
+              <Panel Margin="{TemplateBinding Padding}">
                 <TextBlock Name="PART_Watermark"
                            Text="{TemplateBinding Watermark}"
                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
